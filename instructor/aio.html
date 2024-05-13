@@ -207,6 +207,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="03-docker-for-cms-opendata.html">3. Docker containers for CMS open data</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -423,16 +435,16 @@ Docker Desktop (free for single, non-commercial use).</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-WindowsWSL" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-WindowsWSL">
+<div id="nav-tabpanel-1-WindowsWSL" class="tab-pane show active" aria-labelledby="nav-tab-1-WindowsWSL" role="tabpanel">
 <p>Install Docker Destop following the WSL2 instructions or
 docker-engine following the Linux instructions (Ubuntu/debian).</p>
 <p>For the docker-engine to work, <a href="https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/" class="external-link">activate
 <code>systemd</code></a> on your WSL2.</p>
 </div>
-<div id="nav-tabpanel-1-Mac" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Mac">
+<div id="nav-tabpanel-1-Mac" class="tab-pane" aria-labelledby="nav-tab-1-Mac" role="tabpanel">
 <p>Install Docker Desktop</p>
 </div>
-<div id="nav-tabpanel-1-Linux" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Linux">
+<div id="nav-tabpanel-1-Linux" class="tab-pane" aria-labelledby="nav-tab-1-Linux" role="tabpanel">
 <p>Install Docker Desktop or docker-engine following the instruction for
 your Linux flavour.</p>
 </div>
@@ -458,13 +470,13 @@ your Linux flavour.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-WindowsWSL" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-WindowsWSL">
+<div id="nav-tabpanel-2-WindowsWSL" class="tab-pane show active" aria-labelledby="nav-tab-2-WindowsWSL" role="tabpanel">
 <p>4</p>
 </div>
-<div id="nav-tabpanel-2-Mac" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-Mac">
+<div id="nav-tabpanel-2-Mac" class="tab-pane" aria-labelledby="nav-tab-2-Mac" role="tabpanel">
 <p>5</p>
 </div>
-<div id="nav-tabpanel-2-Linux" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-Linux">
+<div id="nav-tabpanel-2-Linux" class="tab-pane" aria-labelledby="nav-tab-2-Linux" role="tabpanel">
 <p>6</p>
 </div>
 </div>
@@ -688,6 +700,194 @@ documentation is the best bet.</li>
 <code>hello-world</code> example.</li>
 <li>The concepts of image and container, plus the knowledge of certain
 Dockers commands, is all that is needed for the hands-on sessions.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</div>
+</section></section><section id="aio-03-docker-for-cms-opendata"><p>Content from <a href="03-docker-for-cms-opendata.html">Docker containers for CMS open data</a></p>
+<hr>
+<p>Last updated on 2024-05-13 |
+        
+        <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/edit/main/episodes/03-docker-for-cms-opendata.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What container images are available for my work with the CMS open
+data?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Download the ROOT and python images and build your own
+container</li>
+<li>Learn how to share a working area between your laptop and the
+container image.</li>
+<li>Restart an existing container</li>
+<li>Delete and rebuild containers</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="overview"><h2 class="section-heading">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<hr class="half-width">
+<p>This exercise will walk you through setting up and familiarizing
+yourself with Docker, so that you can effectively use it to interface
+with the CMS open data. It is <em>not</em> meant to completely cover
+containers and everything you can do with Docker.
+<!--- Reach out to the organizers
+using the [dedicated Mattermost channel][mattermost]
+if we are missing something. --></p>
+<p>Three types of container images are provided: <a href="https://gitlab.cern.ch/cms-cloud/cmssw-docker-opendata/-/blob/master/README.md" class="external-link">one
+with the CMS software (CMSSW)</a> compatible with the released data, and
+two others with <a href="https://gitlab.cern.ch/cms-cloud/root-vnc" class="external-link">ROOT</a> and <a href="https://gitlab.cern.ch/cms-cloud/python-vnc" class="external-link">python</a> libraries
+needed in this workshop.</p>
+<p>You will only need the CMSSW container, if you want to access the CMS
+data in the MiniAOD format (you will learn about them later). Access to
+it requires CMSSW software that you will not be able to install on your
+own computer.</p>
+<p>We will be using the CMS data the NanoAOD format and access to it
+does not require any CMS-specifc software. The two containers are
+provided to make setting up and using ROOT and/or python libraries
+easier for you for this tutorial, but if you wish, you can also install
+them on your computer.</p>
+<p>All container images come with <a href="https://gitlab.cern.ch/cms-cloud/cmssw-docker-opendata/-/blob/master/README.md#use-vnc" class="external-link">VNC</a>
+for the graphical use interface. It opens directly in a browser window.
+Optionally, you can also connect to the VNC server of the container
+using a VNC viewer (VNC viewer (TigerVNC, RealVNC, TightVNC, OSX
+built-in VNC viewer, etc.) installed on your local machine, but only the
+browser option for which no additional tools are needed is described in
+these instructions. On native Linux, you can also use
+X11-forwarding.</p>
+<p>For different container images, some guidance can be found on the <a href="http://opendata.cern.ch/docs/cms-guide-docker" class="external-link">Open Data Portal
+introduction to Docker</a>. The use of graphical interfaces, such the
+graphics window from ROOT, depends on the operating system of your
+computer. Therefore, in the following, separate instructions are given
+for Windows WSL, Linux and MacOS.</p>
+</section><section id="start-the-container"><h2 class="section-heading">Start the container<a class="anchor" aria-label="anchor" href="#start-the-container"></a>
+</h2>
+<hr class="half-width">
+<p>The first time you start a container, a docker image file gets
+downloaded from an image registry. The open data images are large (2-3GB
+for the root and python tools images and substantially larger for the
+CMSSW image) and it may take long to download, depending on the speed of
+your internet connection. After the download, a container created from
+that image starts. The image download needs to be done only once.
+Afterwards, when starting a container, it will find the downloaded image
+on your computer, and it will be much faster.</p>
+<p>The containers do not have modern editors and it is expected that you
+mount your working directory from the local computer into the container,
+and use your normal editor for editing the files. Note that all your
+compiling and executing still has to be done in the Docker
+container!</p>
+<p>First, before you start up your container, create a local directory
+where you will be doing your code development. In the example below, it
+is called cms_open_data_work and it will live in the $HOME directory.
+You may choose a different location and a shorter directory name if you
+like.</p>
+<div class="section level3">
+<h3 id="python-tools-container">Python tools container<a class="anchor" aria-label="anchor" href="#python-tools-container"></a>
+</h3>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-WindowsWSL" name="WindowsWSL" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-WindowsWSL" type="button" role="tab" aria-controls="nav-tabpanel-1-WindowsWSL" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-WindowsWSL">
+  Windows WSL
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-Mac" name="Mac" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-Mac" type="button" role="tab" aria-controls="nav-tabpanel-1-Mac" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-Mac">
+  Mac
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-Linux" name="Linux" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-Linux" type="button" role="tab" aria-controls="nav-tabpanel-1-Linux" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-Linux">
+  Linux
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-WindowsWSL" class="tab-pane show active" aria-labelledby="nav-tab-1-WindowsWSL" role="tabpanel">
+<p>Run …</p>
+</div>
+<div id="nav-tabpanel-1-Mac" class="tab-pane" aria-labelledby="nav-tab-1-Mac" role="tabpanel">
+<p>Run …</p>
+</div>
+<div id="nav-tabpanel-1-Linux" class="tab-pane" aria-labelledby="nav-tab-1-Linux" role="tabpanel">
+<p>X11</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="root-tools-container">Root tools container<a class="anchor" aria-label="anchor" href="#root-tools-container"></a>
+</h3>
+<div class="tabs">
+<nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-2-WindowsWSL" name="WindowsWSL" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-WindowsWSL" type="button" role="tab" aria-controls="nav-tabpanel-2-WindowsWSL" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-2-WindowsWSL">
+  Windows WSL
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-Mac" name="Mac" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-Mac" type="button" role="tab" aria-controls="nav-tabpanel-2-Mac" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-Mac">
+  Mac
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-Linux" name="Linux" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-Linux" type="button" role="tab" aria-controls="nav-tabpanel-2-Linux" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-Linux">
+  Linux
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-2" class="tab-content">
+<div id="nav-tabpanel-2-WindowsWSL" class="tab-pane show active" aria-labelledby="nav-tab-2-WindowsWSL" role="tabpanel">
+<p>4</p>
+</div>
+<div id="nav-tabpanel-2-Mac" class="tab-pane" aria-labelledby="nav-tab-2-Mac" role="tabpanel">
+<p>5</p>
+</div>
+<div id="nav-tabpanel-2-Linux" class="tab-pane" aria-labelledby="nav-tab-2-Linux" role="tabpanel">
+<p>6</p>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>You have now set up a docker container as a working enviroment for
+CMS open data.</li>
+<li>You know how to pass files between your own computer and the
+container.</li>
+<li>You know how to open a graphical window of ROOT or a jupyterlab in
+your browser using software installed in the container.</li>
 </ul>
 </div>
 </div>
