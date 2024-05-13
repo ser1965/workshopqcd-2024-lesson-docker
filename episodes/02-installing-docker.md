@@ -1,115 +1,182 @@
 ---
-title: "Install docker"
+title: "Installing docker"
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you install docker?
+- How do you install Docker?
+- What are the main Docker concepts and commands I need to know?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to install docker
+- Install Docker
 - Test the installation
+- Learn and exercise the basic commands.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## Installing docker
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.txt) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+Go to the offical [Docker site and their installation instructions](https://docs.docker.com/get-docker/)
+to install Docker for your operating system.
 
-This is an attempt to add content through a direct push the main branch.
+For our purposes, we need [docker-engine](https://docs.docker.com/engine/install/) which is a free open-source software. Note that you can choose to install Docker Desktop (free for single, non-commercial use).
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson:
+::: group-tab
 
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
+### Windows WSL
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+1
 
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
+### Mac
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2
 
-::::::::::::::::::::::::::::::::::::: challenge 
+### Linux
 
-## Challenge 1: Can you do it?
+3
 
-What is the output of this command?
+:::
 
-```r
-paste("This", "new", "lesson", "looks", "good")
-```
+Just trying group tabs with some text in between....
 
-:::::::::::::::::::::::: solution 
+::: group-tab
 
-## Output
- 
-```output
-[1] "This new lesson looks good"
-```
+### Windows WSL
 
-:::::::::::::::::::::::::::::::::
+4
 
+### Mac
 
-## Challenge 2: how do you nest solutions within challenge blocks?
+5
 
-:::::::::::::::::::::::: solution 
+### Linux
 
-You can add a line with at least three colons and a `solution` tag.
+6
 
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Figures
-
-You can use standard markdown for static figures with the following syntax:
-
-`![optional caption that appears below the figure](figure url){alt='alt text for
-accessibility purposes'}`
-
-![You belong in The Carpentries!](https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg){alt='Blue Carpentries hex person logo with no text.'}
+:::
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-Callout sections can highlight information.
+## Windows users:
 
-They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present "asides": 
-content that is not central to the narrative of the lesson,
-e.g. by providing the answer to a commonly-asked question.
+In the episodes of this lesson that follow, we assume that Windows users have [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10) activated with a Linux bash shell (e.g. Ubuntu). All commands indicated with "bash" are expected to be typed in this Linux shell (not in git bash or power shell).
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Testing
+
+As you walk through their documentation, you will eventually come to a point where you will
+run a very simple test, usually involving their `hello-world` container.
+
+You can find their documentation for this step [here](https://docs.docker.com/get-started/).
+
+Testing their code can be summed up by the ability to run (without generating any errors) the following
+commands.
+
+```bash
+$ docker --version
+```
+
+```bash
+$ docker run hello-world
+```
+
+## Images and Containers
+
+As it was mentioned above, there is [ample documentation](https://docs.docker.com/) provided by Docker official sites.  However, there are a couple of concepts that are crucial for the sake of using the container technology with CMS open data: **container images** and **containers**.
+
+One can think of the **container image** as the main ingredients for preparing a dish, and the final dish as the **container** itself.  You can prepare many dishes (**containers**) based on the same ingredients (**container image**). Images can exist without containers, whereas a container needs to run an image to exist. Therefore, containers are dependent on images and use them to construct a run-time environment and run an application.
+
+The final dish, for us, is a container that can be thought of as an isolated machine (running on the host machine) with mostly its own operating system and the adequate software and run-time environment to process CMS open data.
+
+Docker provides the ability to create, build and/or modify images, which can then be used to create containers.  We will not use this aspect of the technology because, as you will see later, we will use an already-built and ready-to-use image in order to create our needed container.
+
+## Commands Cheatsheet
+
+There are many [Docker commands](https://docs.docker.com/engine/reference/commandline/docker/) that can be executed for different tasks.  However, the most useful for our purposes are the following.  We will show some usage examples for some of these commands later.  Feel free to explore other commands.
+
+* Download image:
+```bash
+$ docker pull <image>
+```
+
+* List images:
+```bash
+$ docker image ls
+```
+
+* Remove images
+```bash
+$ docker image rm <image>
+```
+or
+```bash
+$ docker rmi <image>
+```
+
+* List containers
+```bash
+$ docker container ls -a
+```
+  or
+```bash
+$ docker ps -a
+```
+  The `-a` option shows all containers (default shows just those running)
 
 
-## Math
+* Remove containers
+```bash
+$ docker container rm <container>
+```
+or
+```bash
+$ docker rm <container>
+```
 
-One of our episodes contains $\LaTeX$ equations when describing how to create
-dynamic reports with {knitr}, so we now use mathjax to describe this:
+* Create and start a container based on a specific image
+```bash
+$ docker run [options] <image>
+```
+  This command will be used later to create our CMS open data container.
+  
+  The option `-v` for mounting a directory from the local computer to the container will also be used so that you can edit files on your normal editor and used them in the container:
+```bash
+$ docker -v <directory-on-your-local-computer>:<directory-in-the-container> <image>
+```
 
-`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
+* Stop a running container
+```bash
+$ docker stop <container>
+```
 
-Cool, right?
+* Attach a running (but detached) container
+```bash
+$ docker attach <container>
+```
+
+* Start and attach a container that was stopped
+```bash
+$ docker start -i <container>
+```
+
+* Copy files in or out of a container run
+```bash
+$ docker cp <container>:<path> <local path>
+$ docker cp <local path> <container>:<path>
+```
+
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- For up-to-date details for installing Docker, the official documentation is the best bet.
+- Make sure you were able to download and run Docker's `hello-world` example.
+- The concepts of image and container, plus the knowledge of certain Dockers commands, is all that is needed for the hands-on sessions.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
