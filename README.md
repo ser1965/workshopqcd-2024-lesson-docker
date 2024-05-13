@@ -5,7 +5,7 @@
 This lesson was built from The Carpentries Workbench template lesson following the [quick-start instructions](https://carpentries.github.io/sandpaper-docs/introduction.html#super-quickstart-copy-a-template-from-github). The repository was created checking the option of including all branches and making it public. 
 
 The content can be edited in the `main` branch and the GitHub actions generate and deploy the site to https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/index.html
-No attempt for a local build was made, and in principle, there is no need to install R or pandoc. If one wishes to test locally, the instructions are provided in [The Carpentries Workbench][workbench] documentation.
+No attempt for a local build was made, and in principle, there is no need to install R or Pandoc. Note, however, that the content should be in [Pandoc-flavored Markdown](https://pandoc.org/MANUAL.html). If one wishes to test locally, the instructions are provided in [The Carpentries Workbench][workbench] documentation.
 
 Note that initially, the md source for some content that shows on the generated site (e.g. `setup.md`) resides only in the `outputs-md` branch. It is unclear from the instructions why that happens but to be able to update its contents and show the changes on the site, the `setup.md` file was manually copied to the `main` branch. Updates in the `main` branch are automatically propagated to `outputs-md`.
 
