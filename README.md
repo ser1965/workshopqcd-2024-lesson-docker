@@ -1,22 +1,12 @@
-# The Carpentries Workbench Template Markdown Lesson
+# Lesson: Introduction to docker
 
-This lesson is a template lesson that uses [The Carpentries Workbench][workbench]. 
+## Building the lesson
 
-## Note about lesson life cycle stage
-Although the `config.yaml` states the life cycle stage as pre-alpha, **the template is stable and ready to use**. The life cycle stage is preset to `"pre-alpha"` as this setting is appropriate for new lessons initialised using the template.
+This lesson was built from the template lesson [The Carpentries Workbench][workbench] following the [quick-start instructions](https://carpentries.github.io/sandpaper-docs/introduction.html#super-quickstart-copy-a-template-from-github). The repository was created checking the option of including all branches and making it public. The episodes can be modified in the `main` branch and the GitHub actions generate the content and deploy the site to https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/index.html
 
-## Create a new repository from this template
+Note that initially, the md source for some content that shows on the generated site (e.g. `setup.md`) resides only in the `outputs-md` branch. It is unclear from the instructions why that happens but to be able to update its contents and show the changes on the site, the `setup.md` file was manually copied to the `main` branch. Updates in the `main` branch are automatically propagated to `outputs-md`.
 
-To use this template to start a new lesson repository, 
-make sure you're logged into Github.   
-Visit https://github.com/carpentries/workbench-template-md/generate
-and follow the instructions.
-Checking the 'Include all branches' option will save some time waiting for the first website build
-when your new repository is initialised.
-
-If you have any questions, contact [@tobyhodges](https://github.com/tobyhodges)
-
-## Configure a new lesson
+## Configuring the lesson
 
 Follow the steps below to
 complete the initial configuration of a new lesson repository built from this template:
@@ -28,6 +18,8 @@ complete the initial configuration of a new lesson repository built from this te
    If no `gh-pages` branch is available, check _Actions_ to see if the first
    website build workflows are still running.
    The branch should become available when those have completed.
+
+   All this happened automatically for this repository. 
 1. **Adjust the `config.yaml` file:**
    this file contains global parameters for your lesson site.
    Individual fields within the file are documented with comments (beginning with `#`)
@@ -73,9 +65,6 @@ complete the initial configuration of a new lesson repository built from this te
       in line with the terms of the CC-BY license,
       you should ensure that the copyright information 
       provided in the license file is accurate for your project.
-1. **Update this README with 
-   [relevant information about your lesson](https://carpentries.github.io/lesson-development-training/collaborating-newcomers.html#readme)**
-   and delete this section.
 
 [cff-home]: https://citation-file-format.github.io/
 [cff-sandpaper-docs]:  https://carpentries.github.io/sandpaper-docs/editing.html#making-your-lesson-citable
