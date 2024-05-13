@@ -61,7 +61,8 @@ contact: 'cms-dpoa-coordinators@cern.ch' # FIXME
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.md
+- 01-introduction.md
+- 02-installing-docker.md
 
 # Information for Learners
 learners: 
