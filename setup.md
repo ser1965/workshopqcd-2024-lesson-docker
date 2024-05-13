@@ -31,7 +31,7 @@ systems (and potentially add more, e.g. online setup) in the solutions blocks.
 
 ### Windows
 
-Use PuTTY
+Use PuTTY -this is an^change in the md-outputs branch
 
 ::::::::::::::::::::::::
 
