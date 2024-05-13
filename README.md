@@ -2,7 +2,9 @@
 
 ## Building the lesson
 
-This lesson was built from the template lesson [The Carpentries Workbench][workbench] following the [quick-start instructions](https://carpentries.github.io/sandpaper-docs/introduction.html#super-quickstart-copy-a-template-from-github). The repository was created checking the option of including all branches and making it public. The episodes can be modified in the `main` branch and the GitHub actions generate the content and deploy the site to https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/index.html
+This lesson was built from the template lesson [The Carpentries Workbench][workbench] following the [quick-start instructions](https://carpentries.github.io/sandpaper-docs/introduction.html#super-quickstart-copy-a-template-from-github). The repository was created checking the option of including all branches and making it public. 
+
+The content can be modified in the `main` branch and the GitHub actions generate and deploy the site to https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/index.html
 
 Note that initially, the md source for some content that shows on the generated site (e.g. `setup.md`) resides only in the `outputs-md` branch. It is unclear from the instructions why that happens but to be able to update its contents and show the changes on the site, the `setup.md` file was manually copied to the `main` branch. Updates in the `main` branch are automatically propagated to `outputs-md`.
 
