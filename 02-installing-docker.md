@@ -30,15 +30,17 @@ For our purposes, we need [docker-engine](https://docs.docker.com/engine/install
 
 ### Windows WSL
 
-1
+Install Docker Destop following the WSL2 instructions or docker-engine following the Linux instructions (Ubuntu/debian).
+
+For the docker-engine to work, [activate `systemd`](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/) on your WSL2.
 
 ### Mac
 
-2
+Install Docker Desktop
 
 ### Linux
 
-3
+Install Docker Desktop or docker-engine following the instruction for your Linux flavour.
 
 :::
 
@@ -68,6 +70,9 @@ In the episodes of this lesson that follow, we assume that Windows users have [W
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+
+
 ## Testing
 
 As you walk through their documentation, you will eventually come to a point where you will
@@ -79,12 +84,29 @@ Testing their code can be summed up by the ability to run (without generating an
 commands.
 
 ```bash
-$ docker --version
+docker --version
 ```
 
 ```bash
-$ docker run hello-world
+docker run hello-world
 ```
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Important: Docker postinstall to avoid sudo for Linux installation
+
+If you need `sudo` to run the command above, make sure to complete [these steps](https://docs.docker.com/engine/install/linux-postinstall/) after installations, otherwise you will run into trouble with shared file access later on. Guaranteed!!
+
+In brief:
+
+```bash
+sudo groupadd docker #most likely exists already
+sudo usermod -aG docker $USER
+```
+
+Then close the shell and open a new one. Verify that you can run `docker run hello-world` without `sudo`.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Images and Containers
 
@@ -100,75 +122,70 @@ Docker provides the ability to create, build and/or modify images, which can the
 
 There are many [Docker commands](https://docs.docker.com/engine/reference/commandline/docker/) that can be executed for different tasks.  However, the most useful for our purposes are the following.  We will show some usage examples for some of these commands later.  Feel free to explore other commands.
 
-* Download image:
+### Download image:
 ```bash
-$ docker pull <image>
+docker pull <image>
 ```
 
-* List images:
+### List images:
 ```bash
-$ docker image ls
+docker image ls
 ```
 
-* Remove images
+### Remove images
 ```bash
-$ docker image rm <image>
+docker image rm <image>
 ```
 or
 ```bash
-$ docker rmi <image>
+docker rmi <image>
 ```
 
-* List containers
+### List containers
 ```bash
-$ docker container ls -a
+docker container ls -a
 ```
   or
 ```bash
-$ docker ps -a
+docker ps -a
 ```
-  The `-a` option shows all containers (default shows just those running)
+The `-a` option shows all containers (default shows just those running)
 
 
-* Remove containers
+### Remove containers
 ```bash
-$ docker container rm <container>
+docker container rm <container>
 ```
 or
 ```bash
-$ docker rm <container>
+docker rm <container>
 ```
 
-* Create and start a container based on a specific image
+### Create and start a container based on a specific image
 ```bash
-$ docker run [options] <image>
+docker run [options] <image>
 ```
-  This command will be used later to create our CMS open data container.
-  
-  The option `-v` for mounting a directory from the local computer to the container will also be used so that you can edit files on your normal editor and used them in the container:
+This command will be used later to create our CMS open data container.
+
+The option `-v` for mounting a directory from the local computer to the container will also be used so that you can edit files on your normal editor and used them in the container:
 ```bash
-$ docker -v <directory-on-your-local-computer>:<directory-in-the-container> <image>
+docker -v <directory-on-your-local-computer>:<directory-in-the-container> <image>
 ```
 
-* Stop a running container
+### Stop a running container
 ```bash
-$ docker stop <container>
+docker stop <container>
 ```
 
-* Attach a running (but detached) container
+### Start a container that was stopped
 ```bash
-$ docker attach <container>
+docker start -i <container>
 ```
 
-* Start and attach a container that was stopped
+### Copy files in or out of a container
 ```bash
-$ docker start -i <container>
-```
-
-* Copy files in or out of a container run
-```bash
-$ docker cp <container>:<path> <local path>
-$ docker cp <local path> <container>:<path>
+docker cp <container>:<path> <local path>
+docker cp <local path> <container>:<path>
 ```
 
 
