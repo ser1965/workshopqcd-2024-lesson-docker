@@ -197,7 +197,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-installing-docker.html">2. Install docker</a>
+        <a href="02-installing-docker.html">2. Installing docker</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -351,7 +351,7 @@ further use.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></section><section id="aio-02-installing-docker"><p>Content from <a href="02-installing-docker.html">Install docker</a></p>
+</section></section><section id="aio-02-installing-docker"><p>Content from <a href="02-installing-docker.html">Installing docker</a></p>
 <hr>
 <p>Last updated on 2024-05-13 |
         
@@ -367,7 +367,8 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do you install docker?</li>
+<li>How do you install Docker?</li>
+<li>What are the main Docker concepts and commands I need to know?</li>
 </ul>
 </div>
 </div>
@@ -377,129 +378,264 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain how to install docker</li>
+<li>Install Docker</li>
 <li>Test the installation</li>
+<li>Learn and exercise the basic commands.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<section id="installing-docker"><h2 class="section-heading">Installing docker<a class="anchor" aria-label="anchor" href="#installing-docker"></a>
 </h2>
 <hr class="half-width">
-<p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.txt" class="external-link">Pandoc-flavored Markdown</a>
-for static files and <a href="https://rmarkdown.rstudio.com/" class="external-link">R
-Markdown</a> for dynamic files that can render code into output. Please
-refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>This is an attempt to add content through a direct push the main
-branch.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson:</p>
-<ol style="list-style-type: decimal">
-<li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
-</ol>
-<div id="challenge-1-can-you-do-it" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?<a class="anchor" aria-label="anchor" href="#challenge-1-can-you-do-it"></a>
-</h3>
-<div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">Output</h4>
+<p>Go to the offical <a href="https://docs.docker.com/get-docker/" class="external-link">Docker site and their
+installation instructions</a> to install Docker for your operating
+system.</p>
+<p>For our purposes, we need <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a> which
+is a free open-source software. Note that you can choose to install
+Docker Desktop (free for single, non-commercial use).</p>
+<div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-WindowsWSL" name="WindowsWSL" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-WindowsWSL" type="button" role="tab" aria-controls="nav-tabpanel-1-WindowsWSL" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-WindowsWSL">
+  Windows WSL
+  </h3>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within
-challenge blocks?<a class="anchor" aria-label="anchor" href="#challenge-2-how-do-you-nest-solutions-within-challenge-blocks"></a>
-</h3>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+<button class="nav-link" id="nav-tab-1-Mac" name="Mac" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-Mac" type="button" role="tab" aria-controls="nav-tabpanel-1-Mac" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-Mac">
+  Mac
+  </h3>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
+<button class="nav-link" id="nav-tab-1-Linux" name="Linux" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-Linux" type="button" role="tab" aria-controls="nav-tabpanel-1-Linux" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-Linux">
+  Linux
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-WindowsWSL" class="tab-pane show active" aria-labelledby="nav-tab-1-WindowsWSL" role="tabpanel">
+<p>1</p>
+</div>
+<div id="nav-tabpanel-1-Mac" class="tab-pane" aria-labelledby="nav-tab-1-Mac" role="tabpanel">
+<p>2</p>
+</div>
+<div id="nav-tabpanel-1-Linux" class="tab-pane" aria-labelledby="nav-tab-1-Linux" role="tabpanel">
+<p>3</p>
 </div>
 </div>
 </div>
+<p>Just trying group tabs with some text in between….</p>
+<div class="tabs">
+<nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-2-WindowsWSL" name="WindowsWSL" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-WindowsWSL" type="button" role="tab" aria-controls="nav-tabpanel-2-WindowsWSL" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-2-WindowsWSL">
+  Windows WSL
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-Mac" name="Mac" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-Mac" type="button" role="tab" aria-controls="nav-tabpanel-2-Mac" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-Mac">
+  Mac
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-Linux" name="Linux" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-Linux" type="button" role="tab" aria-controls="nav-tabpanel-2-Linux" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-Linux">
+  Linux
+  </h3>
+</button>
 </div>
-</section><section id="figures"><h2 class="section-heading">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
-</h2>
-<hr class="half-width">
-<p>You can use standard markdown for static figures with the following
-syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><div class="figcaption">You belong in The Carpentries!</div>
-</figure><div id="callout1" class="callout">
+</nav><div id="nav-tabContent-2" class="tab-content">
+<div id="nav-tabpanel-2-WindowsWSL" class="tab-pane show active" aria-labelledby="nav-tab-2-WindowsWSL" role="tabpanel">
+<p>4</p>
+</div>
+<div id="nav-tabpanel-2-Mac" class="tab-pane" aria-labelledby="nav-tab-2-Mac" role="tabpanel">
+<p>5</p>
+</div>
+<div id="nav-tabpanel-2-Linux" class="tab-pane" aria-labelledby="nav-tab-2-Linux" role="tabpanel">
+<p>6</p>
+</div>
+</div>
+</div>
+<div id="windows-users" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<div id="windows-users" class="callout-inner">
+<h3 class="callout-title">Windows users:<a class="anchor" aria-label="anchor" href="#windows-users"></a>
 </h3>
 <div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
+<p>In the episodes of this lesson that follow, we assume that Windows
+users have <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" class="external-link">WSL2</a>
+activated with a Linux bash shell (e.g. Ubuntu). All commands indicated
+with “bash” are expected to be typed in this Linux shell (not in git
+bash or power shell).</p>
 </div>
 </div>
 </div>
-</section><section id="math"><h2 class="section-heading">Math<a class="anchor" aria-label="anchor" href="#math"></a>
+</section><section id="testing"><h2 class="section-heading">Testing<a class="anchor" aria-label="anchor" href="#testing"></a>
 </h2>
 <hr class="half-width">
-<p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
+<p>As you walk through their documentation, you will eventually come to
+a point where you will run a very simple test, usually involving their
+<code>hello-world</code> container.</p>
+<p>You can find their documentation for this step <a href="https://docs.docker.com/get-started/" class="external-link">here</a>.</p>
+<p>Testing their code can be summed up by the ability to run (without
+generating any errors) the following commands.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> docker <span class="at">--version</span></span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> docker run hello-world</span></code></pre>
+</div>
+</section><section id="images-and-containers"><h2 class="section-heading">Images and Containers<a class="anchor" aria-label="anchor" href="#images-and-containers"></a>
+</h2>
+<hr class="half-width">
+<p>As it was mentioned above, there is <a href="https://docs.docker.com/" class="external-link">ample documentation</a> provided by
+Docker official sites. However, there are a couple of concepts that are
+crucial for the sake of using the container technology with CMS open
+data: <strong>container images</strong> and
+<strong>containers</strong>.</p>
+<p>One can think of the <strong>container image</strong> as the main
+ingredients for preparing a dish, and the final dish as the
+<strong>container</strong> itself. You can prepare many dishes
+(<strong>containers</strong>) based on the same ingredients
+(<strong>container image</strong>). Images can exist without containers,
+whereas a container needs to run an image to exist. Therefore,
+containers are dependent on images and use them to construct a run-time
+environment and run an application.</p>
+<p>The final dish, for us, is a container that can be thought of as an
+isolated machine (running on the host machine) with mostly its own
+operating system and the adequate software and run-time environment to
+process CMS open data.</p>
+<p>Docker provides the ability to create, build and/or modify images,
+which can then be used to create containers. We will not use this aspect
+of the technology because, as you will see later, we will use an
+already-built and ready-to-use image in order to create our needed
+container.</p>
+</section><section id="commands-cheatsheet"><h2 class="section-heading">Commands Cheatsheet<a class="anchor" aria-label="anchor" href="#commands-cheatsheet"></a>
+</h2>
+<hr class="half-width">
+<p>There are many <a href="https://docs.docker.com/engine/reference/commandline/docker/" class="external-link">Docker
+commands</a> that can be executed for different tasks. However, the most
+useful for our purposes are the following. We will show some usage
+examples for some of these commands later. Feel free to explore other
+commands.</p>
+<ul>
+<li>Download image:</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">$</span> docker pull <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
+</div>
+<ul>
+<li>List images:</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> docker image ls</span></code></pre>
+</div>
+<ul>
+<li>Remove images</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">$</span> docker image rm <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>or</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">$</span> docker rmi <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
+</div>
+<ul>
+<li>List containers</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">$</span> docker container ls <span class="at">-a</span></span></code></pre>
+</div>
+<p>or</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">$</span> docker ps <span class="at">-a</span></span></code></pre>
+</div>
+<p>The <code>-a</code> option shows all containers (default shows just
+those running)</p>
+<ul>
+<li>Remove containers</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> docker container rm <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>or</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> docker rm <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+</div>
+<ul>
+<li>Create and start a container based on a specific image</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">$</span> docker run <span class="pp">[</span><span class="ss">options</span><span class="pp">]</span> <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>This command will be used later to create our CMS open data
+container.</p>
+<p>The option <code>-v</code> for mounting a directory from the local
+computer to the container will also be used so that you can edit files
+on your normal editor and used them in the container:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">$</span> docker <span class="at">-v</span> <span class="op">&lt;</span>directory-on-your-local-computer<span class="op">&gt;</span>:<span class="op">&lt;</span>directory-in-the-container<span class="op">&gt;</span> <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
+</div>
+<ul>
+<li>Stop a running container</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">$</span> docker stop <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+</div>
+<ul>
+<li>Attach a running (but detached) container</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> docker attach <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+</div>
+<ul>
+<li>Start and attach a container that was stopped</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">$</span> docker start <span class="at">-i</span> <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+</div>
+<ul>
+<li>Copy files in or out of a container run</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">$</span> docker cp <span class="op">&lt;</span>container<span class="op">&gt;</span>:<span class="op">&lt;</span>path<span class="op">&gt;</span> <span class="op">&lt;</span>local path<span class="op">&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">$</span> docker cp <span class="op">&lt;</span>local path<span class="op">&gt;</span> <span class="op">&lt;</span>container<span class="op">&gt;</span>:<span class="op">&lt;</span>path<span class="op">&gt;</span></span></code></pre>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -509,14 +645,12 @@ this:</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>For up-to-date details for installing Docker, the official
+documentation is the best bet.</li>
+<li>Make sure you were able to download and run Docker’s
+<code>hello-world</code> example.</li>
+<li>The concepts of image and container, plus the knowledge of certain
+Dockers commands, is all that is needed for the hands-on sessions.</li>
 </ul>
 </div>
 </div>
