@@ -63,6 +63,7 @@ contact: 'cms-dpoa-coordinators@cern.ch' # FIXME
 episodes: 
 - 01-introduction.md
 - 02-installing-docker.md
+- 03-docker-for-cms-opendata.md
 
 # Information for Learners
 learners: 
