@@ -5,6 +5,9 @@ title: Setup
 FIXME: Setup instructions live in this document. Please specify the tools and
 the data sets the Learner needs to have installed.
 
+This file was copied manually from outputs-md branch to the main branch.
+Check if the action bot runs automatically from outputs-md and overwrites this.
+
 ## Data Sets
 
 <!--
@@ -31,7 +34,7 @@ systems (and potentially add more, e.g. online setup) in the solutions blocks.
 
 ### Windows
 
-Use PuTTY - this is a change in the md-outputs branch done through a PR (a direct push does not trigger the action to build the site). 
+Use PuTTY 
 
 ::::::::::::::::::::::::
 
@@ -51,4 +54,3 @@ Use Terminal.app
 Use Terminal
 
 ::::::::::::::::::::::::
-
