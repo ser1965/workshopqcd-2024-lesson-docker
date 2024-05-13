@@ -31,7 +31,7 @@ systems (and potentially add more, e.g. online setup) in the solutions blocks.
 
 ### Windows
 
-Use PuTTY -this is an^change in the md-outputs branch
+Use PuTTY - this is a change in the md-outputs branch done through a PR (a direct push does not trigger the action to build the site). 
 
 ::::::::::::::::::::::::
 
