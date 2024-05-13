@@ -294,39 +294,44 @@
 </div>
 </div>
 </div>
-<section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<section id="what-is-docker"><h2 class="section-heading">What is Docker?<a class="anchor" aria-label="anchor" href="#what-is-docker"></a>
 </h2>
 <hr class="half-width">
 <p>Let’s learn about Docker and why we’re using it!</p>
 <p>Regardless of what you encounter in this lesson, the definitive guide
 is any official documentation provided by <a href="https://docs.docker.com/guides/" class="external-link">Docker</a>.</p>
-<blockquote>
-<h2 id="what-is-docker">What is Docker?</h2>
 <p>From the <a href="https://www.docker.com/resources/what-container" class="external-link">Docker
 website</a></p>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
 <p><em>A container is a standard unit of software that packages up code
 and all its dependencies so the application runs quickly and reliably
 from one computing environment to another. A Docker container image is a
 lightweight, standalone, executable package of software that includes
 everything needed to run an application: code, runtime, system tools,
 system libraries and settings.</em></p>
+</div>
+</div>
+</div>
 <p>In short, Docker allows a user to work in a computing environment
 that has been <em>frozen</em> with respect to interdependent libraries
 and code and related tools. This means that you can use the same
 software that analysts were using 10 years ago (for example) without
-downloading all the relevant 10-year-old libraries. :)</p>
-<p>{: .testimonial}</p>
-</blockquote>
-<blockquote>
-<h2 id="what-can-i-learn-here">What can I learn here?</h2>
+downloading all the relevant 10-year-old libraries.</p>
+</section><section id="what-can-i-learn-here"><h2 class="section-heading">What can I learn here?<a class="anchor" aria-label="anchor" href="#what-can-i-learn-here"></a>
+</h2>
+<hr class="half-width">
 <p>As much as we’d like, we can’t give you a <em>complete</em> overview
 of Docker. However, we do hope to explain why we run Docker in the way
 we do so that you gain some understanding. More specifically, we’ll be
 showing you how to set up Docker for not just this workshop, but for
 interfacing with the CMS open data in general</p>
-<p>{: .objectives}</p>
-</blockquote>
-<p>{% include links.md %}</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -336,13 +341,12 @@ interfacing with the CMS open data in general</p>
 </h3>
 <div class="callout-content">
 <ul>
-<li>Docker is an implementation of a tool called a container that gives
-us a self-consistent computing environment</li>
-<li>Software containers is widely used these days in both industry and
-academic research</li>
+<li>Docker is a set of products to deliver and run software in packages
+called containers.</li>
+<li>Software containers are widely used these days in both industry and
+academic research.</li>
 <li>We use software containers during the hands-on sessions to provide
-the a well-defined software environment for exercises and and for
-further use.</li>
+the a well-defined software environment for exercises.</li>
 </ul>
 </div>
 </div>
@@ -416,13 +420,17 @@ Docker Desktop (free for single, non-commercial use).</p>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
 <div id="nav-tabpanel-1-WindowsWSL" class="tab-pane show active" aria-labelledby="nav-tab-1-WindowsWSL" role="tabpanel">
-<p>1</p>
+<p>Install Docker Destop following the WSL2 instructions or
+docker-engine following the Linux instructions (Ubuntu/debian).</p>
+<p>For the docker-engine to work, <a href="https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/" class="external-link">activate
+<code>systemd</code></a> on your WSL2.</p>
 </div>
 <div id="nav-tabpanel-1-Mac" class="tab-pane" aria-labelledby="nav-tab-1-Mac" role="tabpanel">
-<p>2</p>
+<p>Install Docker Desktop</p>
 </div>
 <div id="nav-tabpanel-1-Linux" class="tab-pane" aria-labelledby="nav-tab-1-Linux" role="tabpanel">
-<p>3</p>
+<p>Install Docker Desktop or docker-engine following the instruction for
+your Linux flavour.</p>
 </div>
 </div>
 </div>
@@ -485,12 +493,37 @@ generating any errors) the following commands.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> docker <span class="at">--version</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">docker</span> <span class="at">--version</span></span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> docker run hello-world</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">docker</span> run hello-world</span></code></pre>
+</div>
+<div id="important-docker-postinstall-to-avoid-sudo-for-linux-installation" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="important-docker-postinstall-to-avoid-sudo-for-linux-installation" class="callout-inner">
+<h3 class="callout-title">Important: Docker postinstall to avoid sudo
+for Linux installation<a class="anchor" aria-label="anchor" href="#important-docker-postinstall-to-avoid-sudo-for-linux-installation"></a>
+</h3>
+<div class="callout-content">
+<p>If you need <code>sudo</code> to run the command above, make sure to
+complete <a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">these
+steps</a> after installations, otherwise you will run into trouble with
+shared file access later on. Guaranteed!!</p>
+<p>In brief:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> groupadd docker <span class="co">#most likely exists already</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">sudo</span> usermod <span class="at">-aG</span> docker <span class="va">$USER</span></span></code></pre>
+</div>
+<p>Then close the shell and open a new one. Verify that you can run
+<code>docker run hello-world</code> without <code>sudo</code>.</p>
+</div>
+</div>
 </div>
 </section><section id="images-and-containers"><h2 class="section-heading">Images and Containers<a class="anchor" aria-label="anchor" href="#images-and-containers"></a>
 </h2>
@@ -525,116 +558,116 @@ commands</a> that can be executed for different tasks. However, the most
 useful for our purposes are the following. We will show some usage
 examples for some of these commands later. Feel free to explore other
 commands.</p>
-<ul>
-<li>Download image:</li>
-</ul>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<div class="section level3">
+<h3 id="download-image">Download image:<a class="anchor" aria-label="anchor" href="#download-image"></a>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">$</span> docker pull <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
-</div>
-<ul>
-<li>List images:</li>
-</ul>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> docker image ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">docker</span> pull <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
 </div>
-<ul>
-<li>Remove images</li>
-</ul>
+</div>
+<div class="section level3">
+<h3 id="list-images">List images:<a class="anchor" aria-label="anchor" href="#list-images"></a>
+</h3>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">$</span> docker image rm <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">docker</span> image ls</span></code></pre>
 </div>
-<p>or</p>
+</div>
+<div class="section level3">
+<h3 id="remove-images">Remove images<a class="anchor" aria-label="anchor" href="#remove-images"></a>
+</h3>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">$</span> docker rmi <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">docker</span> image rm <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
 </div>
-<ul>
-<li>List containers</li>
-</ul>
+<p>or</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">$</span> docker container ls <span class="at">-a</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> rmi <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
 </div>
-<p>or</p>
+</div>
+<div class="section level3">
+<h3 id="list-containers">List containers<a class="anchor" aria-label="anchor" href="#list-containers"></a>
+</h3>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">$</span> docker ps <span class="at">-a</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">docker</span> container ls <span class="at">-a</span></span></code></pre>
 </div>
-<p>The <code>-a</code> option shows all containers (default shows just
-those running)</p>
-<ul>
-<li>Remove containers</li>
-</ul>
+<p>or</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> docker container rm <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code></pre>
 </div>
-<p>or</p>
+<p>The <code>-a</code> option shows all containers (default shows just
+those running)</p>
+</div>
+<div class="section level3">
+<h3 id="remove-containers">Remove containers<a class="anchor" aria-label="anchor" href="#remove-containers"></a>
+</h3>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> docker rm <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">docker</span> container rm <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
 </div>
-<ul>
-<li>Create and start a container based on a specific image</li>
-</ul>
+<p>or</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">$</span> docker run <span class="pp">[</span><span class="ss">options</span><span class="pp">]</span> <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">docker</span> rm <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="create-and-start-a-container-based-on-a-specific-image">Create and start a container based on a specific image<a class="anchor" aria-label="anchor" href="#create-and-start-a-container-based-on-a-specific-image"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="pp">[</span><span class="ss">options</span><span class="pp">]</span> <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>This command will be used later to create our CMS open data
 container.</p>
 <p>The option <code>-v</code> for mounting a directory from the local
 computer to the container will also be used so that you can edit files
 on your normal editor and used them in the container:</p>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">$</span> docker <span class="at">-v</span> <span class="op">&lt;</span>directory-on-your-local-computer<span class="op">&gt;</span>:<span class="op">&lt;</span>directory-in-the-container<span class="op">&gt;</span> <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
-</div>
-<ul>
-<li>Stop a running container</li>
-</ul>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">$</span> docker stop <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">docker</span> <span class="at">-v</span> <span class="op">&lt;</span>directory-on-your-local-computer<span class="op">&gt;</span>:<span class="op">&lt;</span>directory-in-the-container<span class="op">&gt;</span> <span class="op">&lt;</span>image<span class="op">&gt;</span></span></code></pre>
 </div>
-<ul>
-<li>Attach a running (but detached) container</li>
-</ul>
+</div>
+<div class="section level3">
+<h3 id="stop-a-running-container">Stop a running container<a class="anchor" aria-label="anchor" href="#stop-a-running-container"></a>
+</h3>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> docker attach <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">docker</span> stop <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
 </div>
-<ul>
-<li>Start and attach a container that was stopped</li>
-</ul>
+</div>
+<div class="section level3">
+<h3 id="start-a-container-that-was-stopped">Start a container that was stopped<a class="anchor" aria-label="anchor" href="#start-a-container-that-was-stopped"></a>
+</h3>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">$</span> docker start <span class="at">-i</span> <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">docker</span> start <span class="at">-i</span> <span class="op">&lt;</span>container<span class="op">&gt;</span></span></code></pre>
 </div>
-<ul>
-<li>Copy files in or out of a container run</li>
-</ul>
+</div>
+<div class="section level3">
+<h3 id="copy-files-in-or-out-of-a-container">Copy files in or out of a container<a class="anchor" aria-label="anchor" href="#copy-files-in-or-out-of-a-container"></a>
+</h3>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">$</span> docker cp <span class="op">&lt;</span>container<span class="op">&gt;</span>:<span class="op">&lt;</span>path<span class="op">&gt;</span> <span class="op">&lt;</span>local path<span class="op">&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">$</span> docker cp <span class="op">&lt;</span>local path<span class="op">&gt;</span> <span class="op">&lt;</span>container<span class="op">&gt;</span>:<span class="op">&lt;</span>path<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">docker</span> cp <span class="op">&lt;</span>container<span class="op">&gt;</span>:<span class="op">&lt;</span>path<span class="op">&gt;</span> <span class="op">&lt;</span>local path<span class="op">&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">docker</span> cp <span class="op">&lt;</span>local path<span class="op">&gt;</span> <span class="op">&lt;</span>container<span class="op">&gt;</span>:<span class="op">&lt;</span>path<span class="op">&gt;</span></span></code></pre>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -659,6 +692,7 @@ Dockers commands, is all that is needed for the hands-on sessions.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
+</div>
 </section></section>
 </div>
     </main>
