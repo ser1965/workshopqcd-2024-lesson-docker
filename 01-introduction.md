@@ -1,116 +1,60 @@
 ---
-title: "Install docker"
-teaching: 10
-exercises: 2
+title: "Introduction"
+teaching: 5
+exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you install docker?
+- What is docker?
+- What is the point of these exercises?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to install docker
-- Test the installation
+- Learn about Docker and why we’re using it
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.txt) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+Let's learn about Docker and why we're using it!
 
-This is an attempt to add content through a direct push the main branch.
+Regardless of what you encounter in this lesson, the definitive guide is any 
+official documentation provided by [Docker](https://docs.docker.com/guides/).
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson:
+> ## What is Docker?
+>
+> From the [Docker website](https://www.docker.com/resources/what-container)
+>
+> *A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.*
+>
+> In short, Docker allows a user to work in a computing environment that has been *frozen* with respect
+> to interdependent libraries and code and related tools. This means that you can use the same software
+> that analysts were using 10 years ago (for example) without downloading all the relevant 10-year-old
+> libraries. :)
+>
+{: .testimonial}
 
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## Challenge 1: Can you do it?
-
-What is the output of this command?
-
-```r
-paste("This", "new", "lesson", "looks", "good")
-```
-
-:::::::::::::::::::::::: solution 
-
-## Output
- 
-```output
-[1] "This new lesson looks good"
-```
-
-:::::::::::::::::::::::::::::::::
+> ## What can I learn here?
+>
+> As much as we'd like, we can't give you a *complete* overview of Docker. However, we do hope to explain
+> why we run Docker in the way we do so that you gain some understanding. More specifically, we'll
+> be showing you how to set up Docker for not just this workshop, but for interfacing with the 
+> CMS open data in general
+>
+{: .objectives}
 
 
-## Challenge 2: how do you nest solutions within challenge blocks?
 
-:::::::::::::::::::::::: solution 
+{% include links.md %}
 
-You can add a line with at least three colons and a `solution` tag.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Figures
-
-You can use standard markdown for static figures with the following syntax:
-
-`![optional caption that appears below the figure](figure url){alt='alt text for
-accessibility purposes'}`
-
-![You belong in The Carpentries!](https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg){alt='Blue Carpentries hex person logo with no text.'}
-
-::::::::::::::::::::::::::::::::::::: callout
-
-Callout sections can highlight information.
-
-They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present "asides": 
-content that is not central to the narrative of the lesson,
-e.g. by providing the answer to a commonly-asked question.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-## Math
-
-One of our episodes contains $\LaTeX$ equations when describing how to create
-dynamic reports with {knitr}, so we now use mathjax to describe this:
-
-`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
-
-Cool, right?
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- Docker is an implementation of a tool called a container that gives us a self-consistent computing environment
+- Software containers is widely used these days in both industry and academic research
+- We use software containers during the hands-on sessions to provide the a well-defined software environment for exercises and and for further use.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-[r-markdown]: https://rmarkdown.rstudio.com/
