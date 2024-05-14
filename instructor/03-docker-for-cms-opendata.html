@@ -423,7 +423,7 @@ start</a>.</p>
   <h3 class="accordion-header" id="headingSpoiler1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>Windows WSL, Mac and Linux without X11-forwarding</h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -453,7 +453,7 @@ started VNC, stop it first:</p>
   <h3 class="accordion-header" id="headingSpoiler2">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>Linux using X11-forwarding</h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -471,138 +471,181 @@ started VNC, stop it first:</p>
 </div>
 </div>
 </div>
-<!-- ::::::::::::::::::::::::::::::::::::: challenge
-
-### Challenge 1
-
-Create a file on your local host and make sure that you can see it in the container. 
-
-:::::::::::::::: solution
-
-Open the editor in your host system, create a file `example.txt` and save it to the shared working area.
-
-In the container prompt, list the files and show the content of the newly created file:
-
-```bash
-ls
-cat example.txt
-```
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-
-### Challenge 2
-
-Make a plot with the jypyter notebook, save it to a file and make sure that you get it to your host 
-
-:::::::::::::::: solution
-
-Restart the python container with
-
-```bash
-docker start -i my_python
-```
-
-Start the jypyter lab with
-
-```bash
-jupyter-lab --ip=0.0.0.0 --no-browser
-```
-
-Open a new jupyter notebook.
-
-Make a plot of your choice. For a quick CMS open data plot, you can use the following:
-
-```python
-import uproot
-import matplotlib.pylab as plt
-import awkward as ak
-import numpy as np
-
-# open a CMS open data file, we'll see later how to find them
-file = uproot.open("root://eospublic.cern.ch//eos/opendata/cms/Run2016H/SingleMuon/NANOAOD/UL2016_MiniAODv2_NanoAODv9-v1/120000/61FC1E38-F75C-6B44-AD19-A9894155874E.root")
-file.classnames() # this is just to see the top-level content
-events = file['Events']
-# take all muon pt values in an array, we'll see later how to find the variable names
-pt = events['Muon_pt'].array() 
-plt.figure()
-plt.hist(ak.flatten(pt),bins=200,range=(0,200))
-plt.show()
-plt.savefig("pt.png") 
-```
-
-Run the code shell, and you should see the muon pt plot.
-
-You can rename your notebook by right-clicking on the name in the left bar and choosing "Rename".
-
-In a shell on your host system, move to the working directry, list the files and you should see the notebook and the plot file.
-
-```bash
-ls
-```
-
-```output
-myplot.ipynb  pt.png
-```
-
-
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-### Challenge 3
-
-Make a plot with ROOT, save it to a file and make sure that you get it to your host 
-
-:::::::::::::::: solution
-
-Restart the root container with
-
-```bash
-docker start -i my_root
-```
-
-If you are using VNC, start it in the container prompt with
-
-```bash
-start_vnc
-```
-
-Open the URL in your browser and connect with the password `cms.cern`.
-
-Start ROOT and make a plot of your choice. 
-
-For a quick CMS open data plot, you can open a CMS open data file with ROOT with
-
-```bash
- root root://eospublic.cern.ch//eos/opendata/cms/Run2016H/SingleMuon/NANOAOD/UL2016_MiniAODv2_NanoAODv9-v1/120000/61FC1E38-F75C-6B44-AD19-A9894155874E.root
-```
-
-In the ROOT prompt, type
-
-```
-TBrowser t
-```
-
-to open the ROOT object browser, which opens in your broswer VNC tab. Double click on the file name, then on `Events` and then a variable of your choice, e.g. `nMuon`
-
-You should see the plot. To save it, right click in the plot margins and you will see a menu named `TCanvas::Canvas_1`. Choose "Save as".
-
-In a shell on your host system, move to the working directry, list the files and you should see the notebook and the plot file.
-
-```bash
-ls
-```
-
-```output
-nmuon.png
-```
-
-
-
-:::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::: -->
+<div id="challenge-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1" class="callout-inner">
+<h3 class="callout-title">Challenge 1<a class="anchor" aria-label="anchor" href="#challenge-1"></a>
+</h3>
+<div class="callout-content">
+<p>Create a file on your local host and make sure that you can see it in
+the container.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>Open the editor in your host system, create a file
+<code>example.txt</code> and save it to the shared working area.</p>
+<p>In the container prompt, list the files and show the content of the
+newly created file:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">cat</span> example.txt</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2" class="callout-inner">
+<h3 class="callout-title">Challenge 2<a class="anchor" aria-label="anchor" href="#challenge-2"></a>
+</h3>
+<div class="callout-content">
+<p>Make a plot with the jypyter notebook, save it to a file and make
+sure that you get it to your host</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>Restart the python container with</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">docker</span> start <span class="at">-i</span> my_python</span></code></pre>
+</div>
+<p>Start the jypyter lab with</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">jupyter-lab</span> <span class="at">--ip</span><span class="op">=</span>0.0.0.0 <span class="at">--no-browser</span></span></code></pre>
+</div>
+<p>Open a new jupyter notebook.</p>
+<p>Make a plot of your choice. For a quick CMS open data plot, you can
+use the following:</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">import</span> uproot</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pylab <span class="im">as</span> plt</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="im">import</span> awkward <span class="im">as</span> ak</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co"># open a CMS open data file, we'll see later how to find them</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> uproot.<span class="bu">open</span>(<span class="st">"root://eospublic.cern.ch//eos/opendata/cms/Run2016H/SingleMuon/NANOAOD/UL2016_MiniAODv2_NanoAODv9-v1/120000/61FC1E38-F75C-6B44-AD19-A9894155874E.root"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="bu">file</span>.classnames() <span class="co"># this is just to see the top-level content</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>events <span class="op">=</span> <span class="bu">file</span>[<span class="st">'Events'</span>]</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co"># take all muon pt values in an array, we'll see later how to find the variable names</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>pt <span class="op">=</span> events[<span class="st">'Muon_pt'</span>].array() </span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>plt.figure()</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>plt.hist(ak.flatten(pt),bins<span class="op">=</span><span class="dv">200</span>,<span class="bu">range</span><span class="op">=</span>(<span class="dv">0</span>,<span class="dv">200</span>))</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>plt.savefig(<span class="st">"pt.png"</span>) </span></code></pre>
+</div>
+<p>Run the code shell, and you should see the muon pt plot.</p>
+<p>You can rename your notebook by right-clicking on the name in the
+left bar and choosing “Rename”.</p>
+<p>In a shell on your host system, move to the working directory, list
+the files and you should see the notebook and the plot file.</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">ls</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>myplot.ipynb  pt.png</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-3" class="callout-inner">
+<h3 class="callout-title">Challenge 3<a class="anchor" aria-label="anchor" href="#challenge-3"></a>
+</h3>
+<div class="callout-content">
+<p>Make a plot with ROOT, save it to a file and make sure that you get
+it to your host</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<p>Restart the root container with</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">docker</span> start <span class="at">-i</span> my_root</span></code></pre>
+</div>
+<p>If you are using VNC, start it in the container prompt with</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">start_vnc</span></span></code></pre>
+</div>
+<p>Open the URL in your browser and connect with the password
+<code>cms.cern</code>.</p>
+<p>Start ROOT and make a plot of your choice.</p>
+<p>For a quick CMS open data plot, you can open a CMS open data file
+with ROOT with</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a> <span class="ex">root</span> root://eospublic.cern.ch//eos/opendata/cms/Run2016H/SingleMuon/NANOAOD/UL2016_MiniAODv2_NanoAODv9-v1/120000/61FC1E38-F75C-6B44-AD19-A9894155874E.root</span></code></pre>
+</div>
+<p>In the ROOT prompt, type</p>
+<pre><code>TBrowser t</code></pre>
+<p>to open the ROOT object browser, which opens in your broswer VNC tab.
+Double click on the file name, then on <code>Events</code> and then a
+variable of your choice, e.g. <code>nMuon</code></p>
+<p>You should see the plot. To save it, right click in the plot margins
+and you will see a menu named <code>TCanvas::Canvas_1</code>. Choose
+“Save as”.</p>
+<p>Quit ROOT by typing <code>.q</code> on the ROOT prompt or choosing
+“Quit Root” from the ROOT Object Browser menu options.</p>
+<p>In a terminal on your host system, move to the working directory,
+list the files and you should see the plot file.</p>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">ls</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span><span class="va">nmuon.png</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
