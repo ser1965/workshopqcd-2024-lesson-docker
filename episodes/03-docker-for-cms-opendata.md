@@ -13,9 +13,8 @@ exercises: 20
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Download the ROOT and python images and build your own container
-- Learn how to share a working area between your laptop and the container image.
 - Restart an existing container
-- Delete and rebuild containers
+- Learn how to share a working area between your laptop and the container image.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -96,6 +95,12 @@ and now start all over from [the start](#python-tools-container).
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+Close the jupyter lab with Control-C and confirm with y. Type `exit` to leave the container:
+
+```bash
+exit
+```
+
 ### Root tools container
 
 Create the shared directory in your working area:
@@ -106,9 +111,9 @@ mkdir cms_open_data_work
 chmod -R 777 cms_open_data_root
 ```
 
-Then start the container:
+Then start the container, depending on your host system:
 
-::: tab
+:::::::::::::::: spoiler
 
 ### Windows WSL, Mac and Linux without X11-forwarding
 
@@ -124,6 +129,9 @@ Type `exit` to leave the container, and if you have started VNC, stop it first:
 stop_vnc
 exit
 ```
+:::::::::::::::: 
+
+:::::::::::::::: spoiler
 
 ### Linux using X11-forwarding
 
@@ -133,10 +141,146 @@ docker run -it --name my_root --net=host --env="DISPLAY" -v $HOME/.Xauthority:/h
 
 For graphics, X11-forwarding to your host is used.
 
-:::
+Type `exit` to leave the container:
+
+```bash
+exit
+```
+
+::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Challenge 1
+
+Create a file on your local host and make sure that you can see it in the container. 
+
+:::::::::::::::: solution
+
+Open the editor in your host system, create a file `example.txt` and save it to the shared working area.
+
+In the container prompt, list the files and show the content of the newly created file:
+
+```bash
+ls
+cat example.txt
+```
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+
+### Challenge 2
+
+Make a plot with the jypyter notebook, save it to a file and make sure that you get it to your host 
+
+:::::::::::::::: solution
+
+Restart the python container with
+
+```bash
+docker start -i my_python
+```
+
+Start the jypyter lab with
+
+```bash
+jupyter-lab --ip=0.0.0.0 --no-browser
+```
+
+Open a new jupyter notebook.
+
+Make a plot of your choice. For a quick CMS open data plot, you can use the following:
+
+```python
+import uproot
+import matplotlib.pylab as plt
+import awkward as ak
+import numpy as np
+
+# open a CMS open data file, we'll see later how to find them
+file = uproot.open("root://eospublic.cern.ch//eos/opendata/cms/Run2016H/SingleMuon/NANOAOD/UL2016_MiniAODv2_NanoAODv9-v1/120000/61FC1E38-F75C-6B44-AD19-A9894155874E.root")
+file.classnames() # this is just to see the top-level content
+events = file['Events']
+# take all muon pt values in an array, we'll see later how to find the variable names
+pt = events['Muon_pt'].array() 
+plt.figure()
+plt.hist(ak.flatten(pt),bins=200,range=(0,200))
+plt.show()
+plt.savefig("pt.png") 
+```
+
+Run the code shell, and you should see the muon pt plot.
+
+You can rename your notebook by right-clicking on the name in the left bar and choosing "Rename".
+
+In a shell on your host system, move to the working directry, list the files and you should see the notebook and the plot file.
+
+```bash
+ls
+```
+
+```output
+myplot.ipynb  pt.png
+```
 
 
 
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+### Challenge 3
+
+Make a plot with ROOT, save it to a file and make sure that you get it to your host 
+
+:::::::::::::::: solution
+
+Restart the root container with
+
+```bash
+docker start -i my_root
+```
+
+If you are using VNC, start it in the container prompt with
+
+```bash
+start_vnc
+```
+
+Open the URL in your browser and connect with the password `cms.cern`.
+
+Start ROOT and make a plot of your choice. 
+
+For a quick CMS open data plot, you can open a CMS open data file with ROOT with
+
+```bash
+ root root://eospublic.cern.ch//eos/opendata/cms/Run2016H/SingleMuon/NANOAOD/UL2016_MiniAODv2_NanoAODv9-v1/120000/61FC1E38-F75C-6B44-AD19-A9894155874E.root
+```
+
+In the ROOT prompt, type
+
+```
+TBrowser t
+```
+
+to open the ROOT object browser, which opens in your broswer VNC tab. Double click on the file name, then on `Events` and then a variable of your choice, e.g. `nMuon`
+
+You should see the plot. To save it, right click in the plot margins and you will see a menu named `TCanvas::Canvas_1`. Choose "Save as".
+
+In a shell on your host system, move to the working directry, list the files and you should see the notebook and the plot file.
+
+```bash
+ls
+```
+
+```output
+nmuon.png
+```
+
+
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
