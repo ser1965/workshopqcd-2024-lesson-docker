@@ -148,7 +148,7 @@ exit
 
 ::::::::::::::::::::
 
-<!-- ::::::::::::::::::::::::::::::::::::: challenge
+::::::::::::::::::::::::::::::::::::: challenge
 
 ### Challenge 1
 
@@ -168,6 +168,7 @@ cat example.txt
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: challenge
 
 ### Challenge 2
 
@@ -213,7 +214,7 @@ Run the code shell, and you should see the muon pt plot.
 
 You can rename your notebook by right-clicking on the name in the left bar and choosing "Rename".
 
-In a shell on your host system, move to the working directry, list the files and you should see the notebook and the plot file.
+In a shell on your host system, move to the working directory, list the files and you should see the notebook and the plot file.
 
 ```bash
 ls
@@ -227,6 +228,9 @@ myplot.ipynb  pt.png
 
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
 
 ### Challenge 3
 
@@ -266,7 +270,9 @@ to open the ROOT object browser, which opens in your broswer VNC tab. Double cli
 
 You should see the plot. To save it, right click in the plot margins and you will see a menu named `TCanvas::Canvas_1`. Choose "Save as".
 
-In a shell on your host system, move to the working directry, list the files and you should see the notebook and the plot file.
+Quit ROOT by typing `.q` on the ROOT prompt or choosing "Quit Root" from the ROOT Object Browser menu options.
+
+In a terminal on your host system, move to the working directory, list the files and you should see the plot file.
 
 ```bash
 ls
@@ -279,7 +285,7 @@ nmuon.png
 
 
 :::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::: -->
+:::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
