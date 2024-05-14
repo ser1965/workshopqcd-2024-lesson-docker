@@ -247,7 +247,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Docker containers for CMS open data</h1>
-        <p>Last updated on 2024-05-13 |
+        <p>Last updated on 2024-05-14 |
         
         <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/edit/main/episodes/03-docker-for-cms-opendata.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -303,11 +303,11 @@ needed in this workshop.</p>
 data in the MiniAOD format (you will learn about them later). Access to
 it requires CMSSW software that you will not be able to install on your
 own computer.</p>
-<p>We will be using the CMS data the NanoAOD format and access to it
-does not require any CMS-specifc software. The two containers are
-provided to make setting up and using ROOT and/or python libraries
-easier for you for this tutorial, but if you wish, you can also install
-them on your computer.</p>
+<p>During the workshop hands-on lessons, we will be using the CMS data
+the NanoAOD format and access to it does not require any CMS-specifc
+software. Two containers are provided to make setting up and using ROOT
+and/or python libraries easier for you for this tutorial, but if you
+wish, you can also install them on your computer.</p>
 <p>All container images come with <a href="https://gitlab.cern.ch/cms-cloud/cmssw-docker-opendata/-/blob/master/README.md#use-vnc" class="external-link">VNC</a>
 for the graphical use interface. It opens directly in a browser window.
 Optionally, you can also connect to the VNC server of the container
@@ -337,72 +337,119 @@ and use your normal editor for editing the files. Note that all your
 compiling and executing still has to be done in the Docker
 container!</p>
 <p>First, before you start up your container, create a local directory
-where you will be doing your code development. In the example below, it
-is called cms_open_data_work and it will live in the $HOME directory.
-You may choose a different location and a shorter directory name if you
-like.</p>
+where you will be doing your code development. In the examples below, it
+is called <code>cms_open_data_python</code> and
+<code>cms_open_data_root</code>, respectively, and the variable will
+record your working directory path. You may choose a different location
+and a shorter directory name if you like.</p>
 <div class="section level3">
 <h3 id="python-tools-container">Python tools container<a class="anchor" aria-label="anchor" href="#python-tools-container"></a></h3>
-<div class="tabs">
-<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-1-WindowsWSL" name="WindowsWSL" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-WindowsWSL" type="button" role="tab" aria-controls="nav-tabpanel-1-WindowsWSL" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-1-WindowsWSL">
-  Windows WSL
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-1-Mac" name="Mac" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-Mac" type="button" role="tab" aria-controls="nav-tabpanel-1-Mac" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-1-Mac">
-  Mac
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-1-Linux" name="Linux" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-Linux" type="button" role="tab" aria-controls="nav-tabpanel-1-Linux" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-1-Linux">
-  Linux
-  </h3>
-</button>
+<p>Create the shared directory in your working area:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">workpath</span><span class="op">=</span><span class="va">$PWD</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">mkdir</span> cms_open_data_work</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">chmod</span> <span class="at">-R</span> 777 cms_open_data_python</span></code></pre>
 </div>
-</nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-WindowsWSL" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-WindowsWSL">
-<p>Run …</p>
+<p>Start the container with</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> my_python <span class="at">-P</span> <span class="at">-p</span> 8888:8888 <span class="at">-v</span> <span class="va">${workpath}</span>/cms_open_data_python:/code gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5</span></code></pre>
 </div>
-<div id="nav-tabpanel-1-Mac" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Mac">
-<p>Run …</p>
+<p>You will get a container prompt similar this:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>cmsusr@4fa5ac484d6f:/code$</code></pre>
 </div>
-<div id="nav-tabpanel-1-Linux" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-Linux">
-<p>X11</p>
+<p>This is a bash shell and you can see the files in your shared
+area.</p>
+<p>You can now open a jupyter lab from the container prompt with</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">jupyter-lab</span> <span class="at">--ip</span><span class="op">=</span>0.0.0.0 <span class="at">--no-browser</span></span></code></pre>
+</div>
+<p>and open the link that is printed out in the message.</p>
+<p>Click on the Jupyter notebook icon to open a new notebook.</p>
+<div id="permission-denied" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="permission-denied" class="callout-inner">
+<h3 class="callout-title">Permission denied?<a class="anchor" aria-label="anchor" href="#permission-denied"></a>
+</h3>
+<div class="callout-content">
+<p>If a window with “Error Permission denied: Untitled.ipynb” pops up,
+you most likely forgot to define the path variable, to create the shared
+directory or to change its permissions. Exit the jupyter lab with
+Control-C and confirm with y, then type <code>exit</code> to stop the
+container. Remove the container with</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">docker</span> rm my_python</span></code></pre>
+</div>
+<p>and now start all over from <a href="#python-tools-container">the
+start</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="section level3">
 <h3 id="root-tools-container">Root tools container<a class="anchor" aria-label="anchor" href="#root-tools-container"></a></h3>
+<p>Create the shared directory in your working area:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">workpath</span><span class="op">=</span><span class="va">$PWD</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">mkdir</span> cms_open_data_work</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">chmod</span> <span class="at">-R</span> 777 cms_open_data_root</span></code></pre>
+</div>
+<p>Then start the container:</p>
 <div class="tabs">
-<nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-2-WindowsWSL" name="WindowsWSL" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-WindowsWSL" type="button" role="tab" aria-controls="nav-tabpanel-2-WindowsWSL" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-2-WindowsWSL">
-  Windows WSL
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-1" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-1" type="button" role="tab" aria-controls="nav-tabpanel-1-1" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-1">
+  Windows WSL, Mac and Linux without X11-forwarding
   </h3>
 </button>
-<button class="nav-link" id="nav-tab-2-Mac" name="Mac" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-Mac" type="button" role="tab" aria-controls="nav-tabpanel-2-Mac" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-2-Mac">
-  Mac
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-2-Linux" name="Linux" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-Linux" type="button" role="tab" aria-controls="nav-tabpanel-2-Linux" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-2-Linux">
-  Linux
+<button class="nav-link" id="nav-tab-1-2" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-2" type="button" role="tab" aria-controls="nav-tabpanel-1-2" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-2">
+  Linux using X11-forwarding
   </h3>
 </button>
 </div>
-</nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-WindowsWSL" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-WindowsWSL">
-<p>4</p>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> my_root <span class="at">-P</span> <span class="at">-p</span> 5901:5901 <span class="at">-p</span> 6080:6080 <span class="at">-v</span> <span class="va">${workpath}</span>/cms_open_data_root:/code gitlab-registry.cern.ch/cms-cloud/root-vnc:latest</span></code></pre>
 </div>
-<div id="nav-tabpanel-2-Mac" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-Mac">
-<p>5</p>
+<p>For graphics, use VNC that is installed in the container and start
+the graphics windows with <code>start_vnc</code>. Open the browser
+window in the address given at the start message (<a href="http://127.0.0.1:6080/vnc.html" class="external-link uri">http://127.0.0.1:6080/vnc.html</a>) with the default VNC
+password is <code>cms.cern</code>. It shows an empty screen to start
+with and all graphics will pop up there.</p>
+<p>Type <code>exit</code> to leave the container, and if you have
+started VNC, stop it first:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">stop_vnc</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">exit</span></span></code></pre>
 </div>
-<div id="nav-tabpanel-2-Linux" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-Linux">
-<p>6</p>
+</div>
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> my_root <span class="at">--net</span><span class="op">=</span>host <span class="at">--env</span><span class="op">=</span><span class="st">"DISPLAY"</span> <span class="at">-v</span> <span class="va">$HOME</span>/.Xauthority:/home/cmsusr/.Xauthority:rw <span class="at">-v</span> <span class="va">${workpath}</span>/cms_open_data_root:/code gitlab-registry.cern.ch/cms-cloud/root-vnc:latest</span></code></pre>
+</div>
+<p>For graphics, X11-forwarding to your host is used.</p>
 </div>
 </div>
 </div>
@@ -485,8 +532,8 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/03-docker-for-cms-opendata.html",
   "identifier": "https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/03-docker-for-cms-opendata.html",
-  "dateCreated": "2024-05-13",
-  "dateModified": "2024-05-13",
+  "dateCreated": "2024-05-14",
+  "dateModified": "2024-05-14",
   "datePublished": "2024-05-14"
 }
 
