@@ -51,7 +51,7 @@ Create the shared directory in your working area:
 
 ```bash
 export workpath=$PWD
-mkdir cms_open_data_work
+mkdir cms_open_data_python
 chmod -R 777 cms_open_data_python
 ```
 
@@ -67,7 +67,7 @@ You will get a container prompt similar this:
 cmsusr@4fa5ac484d6f:/code$
 ```
 
-This is a bash shell and you can see the files in your shared area.
+This is a bash shell in the container. If you had some files in the shared area, they would be available here.
 
 You can now open a jupyter lab from the container prompt with
 
@@ -106,7 +106,7 @@ Create the shared directory in your working area:
 
 ```bash
 export workpath=$PWD
-mkdir cms_open_data_work
+mkdir cms_open_data_root
 chmod -R 777 cms_open_data_root
 ```
 
@@ -119,8 +119,39 @@ Then start the container, depending on your host system:
 ```bash
 docker run -it --name my_root -P -p 5901:5901 -p 6080:6080 -v ${workpath}/cms_open_data_root:/code gitlab-registry.cern.ch/cms-cloud/root-vnc:latest
 ```
+You will get a container prompt similar this:
+
+```output
+cmsusr@9b182de87ffc:/code$
+```
+
 
 For graphics, use VNC that is installed in the container and start the graphics windows with `start_vnc`. Open the browser window in the address given at the start message (http://127.0.0.1:6080/vnc.html) with the default VNC password is `cms.cern`. It shows an empty screen to start with and all graphics will pop up there.
+
+You can test it with ROOT:
+
+```bash
+start_vnc
+root
+```
+
+Open a ROOT Object Browser by typing 
+
+```
+TBrowser t
+```
+
+in the ROOT prompt.
+
+You should see it opening in the VNC tab of your browser.
+
+Exit ROOT with
+
+```
+.q
+```
+
+in the ROOT prompt.
 
 Type `exit` to leave the container, and if you have started VNC, stop it first:
 
@@ -140,6 +171,30 @@ docker run -it --name my_root --net=host --env="DISPLAY" -v $HOME/.Xauthority:/h
 
 For graphics, X11-forwarding to your host is used.
 
+You can test it with ROOT:
+
+```bash
+root
+```
+
+Open a ROOT Object Browser by typing 
+
+```
+TBrowser t
+```
+
+in the ROOT prompt.
+
+You should see the ROOT Object Broswer opening.
+
+Exit ROOT with
+
+```
+.q
+```
+
+in the ROOT prompt.
+
 Type `exit` to leave the container:
 
 ```bash
@@ -147,6 +202,8 @@ exit
 ```
 
 ::::::::::::::::::::
+
+### Exercises
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -156,9 +213,21 @@ Create a file on your local host and make sure that you can see it in the contai
 
 :::::::::::::::: solution
 
-Open the editor in your host system, create a file `example.txt` and save it to the shared working area.
+Open the editor in your host system, create a file `example.txt` and save it to the shared working area, either in `cms_open_data_python` or in `cms_open_data_root`.
 
-In the container prompt, list the files and show the content of the newly created file:
+Restart the container, making sure to choose the container that is connected to shared working area that you have chosen:
+
+```bash
+docker start -i my_python
+```
+
+or 
+
+```bash
+docker start -i my_root
+```
+
+In the container prompt, list the files and show the contents of the newly created file:
 
 ```bash
 ls
@@ -268,7 +337,7 @@ TBrowser t
 
 to open the ROOT object browser, which opens in your broswer VNC tab. Double click on the file name, then on `Events` and then a variable of your choice, e.g. `nMuon`
 
-You should see the plot. To save it, right click in the plot margins and you will see a menu named `TCanvas::Canvas_1`. Choose "Save as".
+You should see the plot. To save it, right click in the plot margins and you will see a menu named `TCanvas::Canvas_1`. Choose "Save as" and give the name, e.g. `nmuon.png`.
 
 Quit ROOT by typing `.q` on the ROOT prompt or choosing "Quit Root" from the ROOT Object Browser menu options.
 
