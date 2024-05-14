@@ -59,7 +59,6 @@ Start the container with
 
 ```bash
 docker run -it --name my_python -P -p 8888:8888 -v ${workpath}/cms_open_data_python:/code gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5
-
 ```
 
 You will get a container prompt similar this:
@@ -149,7 +148,7 @@ exit
 
 ::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: challenge
+<!-- ::::::::::::::::::::::::::::::::::::: challenge
 
 ### Challenge 1
 
@@ -280,7 +279,7 @@ nmuon.png
 
 
 :::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::: -->
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
