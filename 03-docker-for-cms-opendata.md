@@ -82,7 +82,7 @@ Click on the Jupyter notebook icon to open a new notebook.
 
 :::::::::::::::::::::::::::::: callout
 
-## Permission denied?
+### Permission denied?
 
 If a window with "Error Permission denied: Untitled.ipynb" pops up, you most likely forgot to define the path variable, to create the shared directory or to change its permissions. Exit the jupyter lab with Control-C and confirm with y, then type `exit` to stop the container. Remove the container with
 
@@ -169,6 +169,12 @@ exit
 docker run -it --name my_root --net=host --env="DISPLAY" -v $HOME/.Xauthority:/home/cmsusr/.Xauthority:rw -v ${workpath}/cms_open_data_root:/code gitlab-registry.cern.ch/cms-cloud/root-vnc:latest
 ```
 
+You will get a container prompt similar this:
+
+```output
+cmsusr@9b182de87ffc:/code$
+```
+
 For graphics, X11-forwarding to your host is used.
 
 You can test it with ROOT:
@@ -203,7 +209,7 @@ exit
 
 ::::::::::::::::::::
 
-### Exercises
+## Exercises
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
