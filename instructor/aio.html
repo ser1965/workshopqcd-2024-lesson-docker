@@ -739,10 +739,9 @@ data?</li>
 <ul>
 <li>Download the ROOT and python images and build your own
 container</li>
+<li>Restart an existing container</li>
 <li>Learn how to share a working area between your laptop and the
 container image.</li>
-<li>Restart an existing container</li>
-<li>Delete and rebuild containers</li>
 </ul>
 </div>
 </div>
@@ -863,38 +862,38 @@ start</a>.</p>
 </div>
 </div>
 </div>
+<p>Close the jupyter lab with Control-C and confirm with y. Type
+<code>exit</code> to leave the container:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">exit</span></span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="root-tools-container">Root tools container<a class="anchor" aria-label="anchor" href="#root-tools-container"></a>
 </h3>
 <p>Create the shared directory in your working area:</p>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">workpath</span><span class="op">=</span><span class="va">$PWD</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">mkdir</span> cms_open_data_work</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">chmod</span> <span class="at">-R</span> 777 cms_open_data_root</span></code></pre>
-</div>
-<p>Then start the container:</p>
-<div class="tabs">
-<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-1-1" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-1" type="button" role="tab" aria-controls="nav-tabpanel-1-1" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-1-1">
-  Windows WSL, Mac and Linux without X11-forwarding
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-1-2" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-2" type="button" role="tab" aria-controls="nav-tabpanel-1-2" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-1-2">
-  Linux using X11-forwarding
-  </h3>
-</button>
-</div>
-</nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> my_root <span class="at">-P</span> <span class="at">-p</span> 5901:5901 <span class="at">-p</span> 6080:6080 <span class="at">-v</span> <span class="va">${workpath}</span>/cms_open_data_root:/code gitlab-registry.cern.ch/cms-cloud/root-vnc:latest</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">workpath</span><span class="op">=</span><span class="va">$PWD</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">mkdir</span> cms_open_data_work</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">chmod</span> <span class="at">-R</span> 777 cms_open_data_root</span></code></pre>
+</div>
+<p>Then start the container, depending on your host system:</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>Windows WSL, Mac and Linux without X11-forwarding</h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> my_root <span class="at">-P</span> <span class="at">-p</span> 5901:5901 <span class="at">-p</span> 6080:6080 <span class="at">-v</span> <span class="va">${workpath}</span>/cms_open_data_root:/code gitlab-registry.cern.ch/cms-cloud/root-vnc:latest</span></code></pre>
 </div>
 <p>For graphics, use VNC that is installed in the container and start
 the graphics windows with <code>start_vnc</code>. Open the browser
@@ -903,23 +902,172 @@ password is <code>cms.cern</code>. It shows an empty screen to start
 with and all graphics will pop up there.</p>
 <p>Type <code>exit</code> to leave the container, and if you have
 started VNC, stop it first:</p>
-<div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">stop_vnc</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">exit</span></span></code></pre>
-</div>
-</div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> my_root <span class="at">--net</span><span class="op">=</span>host <span class="at">--env</span><span class="op">=</span><span class="st">"DISPLAY"</span> <span class="at">-v</span> <span class="va">$HOME</span>/.Xauthority:/home/cmsusr/.Xauthority:rw <span class="at">-v</span> <span class="va">${workpath}</span>/cms_open_data_root:/code gitlab-registry.cern.ch/cms-cloud/root-vnc:latest</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">stop_vnc</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="bu">exit</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+<div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>Linux using X11-forwarding</h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--name</span> my_root <span class="at">--net</span><span class="op">=</span>host <span class="at">--env</span><span class="op">=</span><span class="st">"DISPLAY"</span> <span class="at">-v</span> <span class="va">$HOME</span>/.Xauthority:/home/cmsusr/.Xauthority:rw <span class="at">-v</span> <span class="va">${workpath}</span>/cms_open_data_root:/code gitlab-registry.cern.ch/cms-cloud/root-vnc:latest</span></code></pre>
 </div>
 <p>For graphics, X11-forwarding to your host is used.</p>
+<p>Type <code>exit</code> to leave the container:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">exit</span></span></code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+<!-- ::::::::::::::::::::::::::::::::::::: challenge
+
+### Challenge 1
+
+Create a file on your local host and make sure that you can see it in the container. 
+
+:::::::::::::::: solution
+
+Open the editor in your host system, create a file `example.txt` and save it to the shared working area.
+
+In the container prompt, list the files and show the content of the newly created file:
+
+```bash
+ls
+cat example.txt
+```
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+
+### Challenge 2
+
+Make a plot with the jypyter notebook, save it to a file and make sure that you get it to your host 
+
+:::::::::::::::: solution
+
+Restart the python container with
+
+```bash
+docker start -i my_python
+```
+
+Start the jypyter lab with
+
+```bash
+jupyter-lab --ip=0.0.0.0 --no-browser
+```
+
+Open a new jupyter notebook.
+
+Make a plot of your choice. For a quick CMS open data plot, you can use the following:
+
+```python
+import uproot
+import matplotlib.pylab as plt
+import awkward as ak
+import numpy as np
+
+# open a CMS open data file, we'll see later how to find them
+file = uproot.open("root://eospublic.cern.ch//eos/opendata/cms/Run2016H/SingleMuon/NANOAOD/UL2016_MiniAODv2_NanoAODv9-v1/120000/61FC1E38-F75C-6B44-AD19-A9894155874E.root")
+file.classnames() # this is just to see the top-level content
+events = file['Events']
+# take all muon pt values in an array, we'll see later how to find the variable names
+pt = events['Muon_pt'].array() 
+plt.figure()
+plt.hist(ak.flatten(pt),bins=200,range=(0,200))
+plt.show()
+plt.savefig("pt.png") 
+```
+
+Run the code shell, and you should see the muon pt plot.
+
+You can rename your notebook by right-clicking on the name in the left bar and choosing "Rename".
+
+In a shell on your host system, move to the working directry, list the files and you should see the notebook and the plot file.
+
+```bash
+ls
+```
+
+```output
+myplot.ipynb  pt.png
+```
+
+
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+### Challenge 3
+
+Make a plot with ROOT, save it to a file and make sure that you get it to your host 
+
+:::::::::::::::: solution
+
+Restart the root container with
+
+```bash
+docker start -i my_root
+```
+
+If you are using VNC, start it in the container prompt with
+
+```bash
+start_vnc
+```
+
+Open the URL in your browser and connect with the password `cms.cern`.
+
+Start ROOT and make a plot of your choice. 
+
+For a quick CMS open data plot, you can open a CMS open data file with ROOT with
+
+```bash
+ root root://eospublic.cern.ch//eos/opendata/cms/Run2016H/SingleMuon/NANOAOD/UL2016_MiniAODv2_NanoAODv9-v1/120000/61FC1E38-F75C-6B44-AD19-A9894155874E.root
+```
+
+In the ROOT prompt, type
+
+```
+TBrowser t
+```
+
+to open the ROOT object browser, which opens in your broswer VNC tab. Double click on the file name, then on `Events` and then a variable of your choice, e.g. `nMuon`
+
+You should see the plot. To save it, right click in the plot margins and you will see a menu named `TCanvas::Canvas_1`. Choose "Save as".
+
+In a shell on your host system, move to the working directry, list the files and you should see the notebook and the plot file.
+
+```bash
+ls
+```
+
+```output
+nmuon.png
+```
+
+
+
+:::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::: -->
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
