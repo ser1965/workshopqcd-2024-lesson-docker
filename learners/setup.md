@@ -2,28 +2,21 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
-
-## Data Sets
-
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
-
-## Software Setup
+## Working environment
 
 ::::::::::::::::::::::::::::::::::::::: discussion
 
-### Details
+### Note
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+We expect participants to work in a Unix environment on their laptop.
+
+If you are unfamiliar with the Unix shell, you can work through the exercises in [The Unix Shell](https://swcarpentry.github.io/shell-novice/) tutorial by Software Carpentry. 
+
+Windows users: the Unix tutorial gives `git bash` as an option. However, for all work during the hands-on session:
+
+- do **not** use `git bash`
+- do **not use** `Power shell` (apart from installing WSL2)
+- activate WSL2 and **use the Ubuntu terminal** that comes with it!
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -31,7 +24,7 @@ systems (and potentially add more, e.g. online setup) in the solutions blocks.
 
 ### Windows
 
-Use PuTTY
+Activate [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command) and use the Ubuntu shell.
 
 ::::::::::::::::::::::::
 
@@ -51,4 +44,3 @@ Use Terminal.app
 Use Terminal
 
 ::::::::::::::::::::::::
-
