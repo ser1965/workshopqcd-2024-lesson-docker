@@ -4,5 +4,6 @@ title: 'Reference'
 
 ## Glossary
 
-This is a placeholder file. Please add content here. 
+Feel free to suggest contents to the glossary.
+See [how to contribute](CONTRIBUTING.md). 
 

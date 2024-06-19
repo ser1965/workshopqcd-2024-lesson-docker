@@ -33,10 +33,8 @@ official documentation provided by [Docker](https://docs.docker.com/guides/).
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-In short, Docker allows a user to work in a computing environment that has been *frozen* with respect
-to interdependent libraries and code and related tools. This means that you can use the same software
-that analysts were using 10 years ago (for example) without downloading all the relevant 10-year-old
-libraries. 
+In short, Docker allows a user to work in a computing environment that is well defined and has been *frozen* with respect
+to interdependent libraries and code and related tools. The computing environment in the container is separate and independent from your own working area. This means that you do not have to worry about software packages that you might already have installed with a different version. 
 
 ## What can I learn here?
 
