@@ -24,43 +24,27 @@ exercises: 20
 Go to the offical [Docker site and their installation instructions](https://docs.docker.com/get-docker/)
 to install Docker for your operating system.
 
-For our purposes, we need [docker-engine](https://docs.docker.com/engine/install/) which is a free open-source software. Note that you can choose to install Docker Desktop (free for single, non-commercial use).
+For our purposes, we need [docker-engine](https://docs.docker.com/engine/install/) which is a free open-source software. Note that you can choose to install Docker Desktop (free for single, non-commercial use), but in our instructions, we do not rely on the Graphical UI that it offers.
 
-::: group-tab
-
-### Windows WSL
-
-Install Docker Destop following the WSL2 instructions or docker-engine following the Linux instructions (Ubuntu/debian).
-
-For the docker-engine to work, [activate `systemd`](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/) on your WSL2.
-
-### Mac
-
-Install Docker Desktop
-
-### Linux
-
-Install Docker Desktop or docker-engine following the instruction for your Linux flavour.
-
-:::
-
-Just trying group tabs with some text in between....
-
-::: group-tab
+::: tab
 
 ### Windows WSL
 
-4
+Install [Docker Destop](https://docs.docker.com/get-docker/) following the WSL2 instructions or [docker-engine](https://docs.docker.com/engine/install/) following the Linux instructions (Ubuntu/debian).
+
+For the docker-engine to work, if installed without Docker Desktop, [activate `systemd`](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/) on your WSL2.
 
 ### Mac
 
-5
+Install [Docker Destop](https://docs.docker.com/get-docker/)
 
 ### Linux
 
-6
+Install [Docker Destop](https://docs.docker.com/get-docker/) or [docker-engine](https://docs.docker.com/engine/install/) following the instruction for your Linux flavour.
 
 :::
+
+
 
 ::::::::::::::::::::::::::::::::::::: callout
 

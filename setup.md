@@ -15,7 +15,7 @@ If you are unfamiliar with the Unix shell, you can work through the exercises in
 Windows users: the Unix tutorial gives `git bash` as an option. However, for all work during the hands-on session:
 
 - do **not** use `git bash`
-- do **not use** `Power shell` (apart from installing WSL2)
+- do **not** use `Power shell` (apart from installing WSL2)
 - activate WSL2 and **use the Ubuntu terminal** that comes with it!
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -24,7 +24,7 @@ Windows users: the Unix tutorial gives `git bash` as an option. However, for all
 
 ### Windows
 
-Activate [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command) and use the Ubuntu shell.
+Activate [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command) and use the Ubuntu terminal.
 
 ::::::::::::::::::::::::
 
