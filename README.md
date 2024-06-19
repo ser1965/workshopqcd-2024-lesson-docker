@@ -1,4 +1,4 @@
-# Lesson: Dataset scouting
+# Lesson: Getting started with docker
 
 ## Building the lesson
 
