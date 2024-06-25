@@ -77,10 +77,16 @@ List your local Docker images and containers and see that you have the `hepstore
 
 ```bash
 docker image ls
-docker ps -a
+docker container ls -a
 ```
 
 ## Start the Sherpa container
+
+Move back from the pythia working area with
+
+```bash
+cd ..
+```
 
 Create the shared directory in your working area:
 
@@ -158,10 +164,9 @@ If you are not already in the container, start it with
 docker run -v $PWD:/host  -w /host -it --rm hepstore/rivet-pythia
 ```
 
-Move to the `/host` directory and write some output to a file
+Write some output to a file
 
 ```bash
-cd /host
 echo "This is from the container" > output.txt
 ```
 
@@ -196,6 +201,12 @@ In the container prompt, check the Rivet version with
 rivet --version
 ```
 
+You should get
+
+```output
+rivet v3.1.7
+```
+
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -207,7 +218,7 @@ In the Pythia container, copy a Pythia example code `main01.cc`, and `Makefile` 
 
 :::::::::::::::: solution
 
-Start the Pythia container with
+Start the Pythia container in your shared `pythia_work` directory:
 
 ```bash
 docker run -v $PWD:/host -w /host -it --rm hepstore/rivet-pythia
@@ -223,9 +234,11 @@ cp /usr/local/share/Pythia8/examples/Makefile* .
 Compile and run
 
 ```bash
-make main01 & ./main01
+make main01
+./main01
 ```
 
+You will get a particle listing and a lovely ASCII histogram of charged multiplicity.
 
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
