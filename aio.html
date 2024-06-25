@@ -270,7 +270,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-docker-for-pythia-rivet.html">4. Docker containers for Pythia and Rivet</a>
+        <a href="04-docker-for-mc-generators-rivet.html">4. Docker containers for Monte Carlo generators and Rivet</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -1222,11 +1222,11 @@ your browser using software installed in the container.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></section><section id="aio-04-docker-for-pythia-rivet"><p>Content from <a href="04-docker-for-pythia-rivet.html">Docker containers for Pythia and Rivet</a></p>
+</section></section><section id="aio-04-docker-for-mc-generators-rivet"><p>Content from <a href="04-docker-for-mc-generators-rivet.html">Docker containers for Monte Carlo generators and Rivet</a></p>
 <hr>
 <p>Last updated on 2024-06-25 |
         
-        <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/edit/main/episodes/04-docker-for-pythia-rivet.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/edit/main/episodes/04-docker-for-mc-generators-rivet.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1262,7 +1262,8 @@ any links that you are not going to use.
 <p>You will learn about <a href="https://gitlab.com/hepcedar/rivet" class="external-link">Rivet</a> during this QCD
 school. The Rivet project provides <a href="https://gitlab.com/hepcedar/rivet/-/blob/release-3-1-x/doc/tutorials/docker.md" class="external-link">container
 images</a> with Rivet and Monte Carlo generators included. For now, we
-will download the container image with Rivet and Pythia.</p>
+will download the Rivet container images with Pythia and Sherpa code
+included.</p>
 </section><section id="rivet-containers"><h2 class="section-heading">Rivet containers<a class="anchor" aria-label="anchor" href="#rivet-containers"></a>
 </h2>
 <hr class="half-width">
@@ -1280,17 +1281,17 @@ compiling and executing still has to be done in the Docker
 container!</p>
 <p>First, before you start up your container, create a local directory
 where you will be doing your code development. In the examples below, it
-is called <code>rivet_work</code>. You may choose a different directory
-name if you like.</p>
-</section><section id="start-the-container"><h2 class="section-heading">Start the container<a class="anchor" aria-label="anchor" href="#start-the-container"></a>
+is called <code>pythia_work</code> or <code>sherpa_work</code>. You may
+choose a different directory name if you like.</p>
+</section><section id="start-the-pythia-container"><h2 class="section-heading">Start the Pythia container<a class="anchor" aria-label="anchor" href="#start-the-pythia-container"></a>
 </h2>
 <hr class="half-width">
 <p>Create the shared directory in your working area:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">mkdir</span> rivet_work</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> rivet_work</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">mkdir</span> pythia_work</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> pythia_work</span></code></pre>
 </div>
 <p>Start the container with</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -1356,12 +1357,12 @@ the container.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Open the editor in your host system, create a file
 <code>example.txt</code> and save it to the shared working area in
-<code>rivet_work</code>.</p>
-<p>Start a container in your shared <code>rivet_work</code>
+<code>pythia_work</code>.</p>
+<p>Start a container in your shared <code>pythia_work</code>
 directory:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1399,7 +1400,7 @@ your local area.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>If you are not already in the container, start it with</p>
 <div class="codewrapper sourceCode" id="cb9">
@@ -1428,41 +1429,58 @@ local area.</p>
 </div>
 </div>
 </div>
-<!-- ### Challenge 3
-
-Copy an example code `main01.cc` and `Makefile*` from `/usr/local/share/Pythia8/examples/` of the container to your shared area. Compile the code with `make`and run it.
-
-:::::::::::::::: solution
-
-Start the root container with
-
-```bash
-docker run -v $PWD:/host -it --rm hepstore/rivet-pythia
-```
-
-Move to the shared area
-
-```bash
-cd /host
-```
-
-Copy the files with
-
-```bash
-cp /usr/local/share/Pythia8/examples/main01.cc .
-cp /usr/local/share/Pythia8/examples/Makefile* .
-```
-
-Compile and run
-
-```bash
-make main01.cc & ./main01
-```
-
-FIXME: this does not work
-
-:::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::: -->
+<div id="challenge-3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-3" class="callout-inner">
+<h3 class="callout-title">Challenge 3<a class="anchor" aria-label="anchor" href="#challenge-3"></a>
+</h3>
+<div class="callout-content">
+<p>In the Pythia container, copy a Pythia example code
+<code>main01.cc</code>, and <code>Makefile</code> and
+<code>Makefile.inc</code> from
+<code>/usr/local/share/Pythia8/examples/</code> of the container to your
+shared area. Compile the code with <code>make</code> and run it.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<p>Start the Pythia container with</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
+</div>
+<p>Move to the shared area</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">cd</span> /host</span></code></pre>
+</div>
+<p>Copy the files with</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/main01.cc .</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/Makefile<span class="pp">*</span> .</span></code></pre>
+</div>
+<p>Compile and run</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">make</span> main01 <span class="kw">&amp;</span> <span class="ex">./main01</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>

@@ -10,6 +10,9 @@
     <loc>https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/03-docker-for-cms-opendata.html</loc>
   </url>
   <url>
+    <loc>https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/04-docker-for-mc-generators-rivet.html</loc>
+  </url>
+  <url>
     <loc>https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/04-docker-for-pythia-rivet.html</loc>
   </url>
   <url>
@@ -38,6 +41,9 @@
   </url>
   <url>
     <loc>https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/instructor/03-docker-for-cms-opendata.html</loc>
+  </url>
+  <url>
+    <loc>https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/instructor/04-docker-for-mc-generators-rivet.html</loc>
   </url>
   <url>
     <loc>https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/instructor/04-docker-for-pythia-rivet.html</loc>
