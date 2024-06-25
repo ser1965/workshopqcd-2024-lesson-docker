@@ -236,6 +236,7 @@
         <ul><li><a href="#overview">Overview</a></li>
 <li><a href="#rivet-containers">Rivet containers</a></li>
 <li><a href="#start-the-pythia-container">Start the Pythia container</a></li>
+<li><a href="#start-the-sherpa-container">Start the Sherpa container</a></li>
 <li><a href="#test-the-environment">Test the environment</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -414,6 +415,44 @@ they were deleted with the <code>--rm</code> flag.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">docker</span> image ls</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span></code></pre>
 </div>
+</section><section id="start-the-sherpa-container"><h2 class="section-heading">Start the Sherpa container<a class="anchor" aria-label="anchor" href="#start-the-sherpa-container"></a>
+</h2>
+<hr class="half-width"><p>Create the shared directory in your working area:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">mkdir</span> sherpa_work</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">cd</span> sherpa_work</span></code></pre>
+</div>
+<p>Start the container with</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-sherpa:3.1.7-2.2.12</span></code></pre>
+</div>
+<p>This will share you current working directory (<code>$PWD</code>)
+into the container’s <code>/host</code> directory.</p>
+<p>The flag <code>--rm</code> makes docker delete the local container
+when you exit and every time you run this command it creates a new
+container. This means that changes done anywhere else than in the shared
+<code>/host</code> directory will be deleted.</p>
+<p>Note that the <code>--rm</code> flag does not delete the image that
+you just downloaded.</p>
+<p>You will get a container prompt similar this:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>root@2560cb95ef24:/host#</code></pre>
+</div>
+<p>The flag <code>-w /host</code> has set <code>/host</code> as the
+working directory. You will be doing all your work in this shared
+directory.</p>
+<p>For now, exit from the container:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="bu">exit</span></span></code></pre>
+</div>
 </section><section id="test-the-environment"><h2 class="section-heading">Test the environment<a class="anchor" aria-label="anchor" href="#test-the-environment"></a>
 </h2>
 <hr class="half-width"><div id="challenge-1" class="callout challenge">
@@ -441,18 +480,18 @@ the container.</p>
 <code>pythia_work</code>.</p>
 <p>Start a container in your shared <code>pythia_work</code>
 directory:</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
 </div>
 <p>In the container prompt, list the files and show the contents of the
 newly created file:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">ls</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">cat</span> example.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">cat</span> example.txt</span></code></pre>
 </div>
 </div>
 </div>
@@ -479,27 +518,27 @@ your local area.</p>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>If you are not already in the container, start it with</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host  <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host  <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
 </div>
 <p>Move to the <code>/host</code> directory and write some output to a
 file</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="bu">cd</span> /host</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This is from the container"</span> <span class="op">&gt;</span> output.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">cd</span> /host</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This is from the container"</span> <span class="op">&gt;</span> output.txt</span></code></pre>
 </div>
 <p>Exit from the container and see that you have the output file on your
 local area.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">exit</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">ls</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">cat</span> output.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="bu">exit</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">cat</span> output.txt</span></code></pre>
 </div>
 </div>
 </div>
@@ -513,11 +552,7 @@ local area.</p>
 <h3 class="callout-title">Challenge 3<a class="anchor" aria-label="anchor" href="#challenge-3"></a>
 </h3>
 <div class="callout-content">
-<p>In the Pythia container, copy a Pythia example code
-<code>main01.cc</code>, and <code>Makefile</code> and
-<code>Makefile.inc</code> from
-<code>/usr/local/share/Pythia8/examples/</code> of the container to your
-shared area. Compile the code with <code>make</code> and run it.</p>
+<p>Check the Rivet version in the Sherpa container.</p>
 </div>
 </div>
 </div>
@@ -528,24 +563,64 @@ shared area. Compile the code with <code>make</code> and run it.</p>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<p>Start the Pythia container with</p>
-<div class="codewrapper sourceCode" id="cb12">
+<p>Start a container in your shared <code>sherpa_work</code>
+directory:</p>
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-sherpa:3.1.7-2.2.12</span></code></pre>
+</div>
+<p>In the container prompt, check the Rivet version with</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">rivet</span> <span class="at">--version</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-4" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-4" class="callout-inner">
+<h3 class="callout-title">Challenge 4<a class="anchor" aria-label="anchor" href="#challenge-4"></a>
+</h3>
+<div class="callout-content">
+<p>In the Pythia container, copy a Pythia example code
+<code>main01.cc</code>, and <code>Makefile</code> and
+<code>Makefile.inc</code> from
+<code>/usr/local/share/Pythia8/examples/</code> of the container to your
+shared area. Compile the code with <code>make</code> and run it.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<p>Start the Pythia container with</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
 </div>
 <p>Copy the files to your working area with</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/main01.cc .</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/Makefile<span class="pp">*</span> .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/main01.cc .</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/Makefile<span class="pp">*</span> .</span></code></pre>
 </div>
 <p>Compile and run</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">make</span> main01 <span class="kw">&amp;</span> <span class="ex">./main01</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">make</span> main01 <span class="kw">&amp;</span> <span class="ex">./main01</span></span></code></pre>
 </div>
 </div>
 </div>
