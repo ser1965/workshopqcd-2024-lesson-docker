@@ -100,7 +100,7 @@ One can think of the **container image** as the main ingredients for preparing a
 
 The final dish, for us, is a container that can be thought of as an isolated machine (running on the host machine) with mostly its own operating system and the adequate software and run-time environment to process CMS open data.
 
-Docker provides the ability to create, build and/or modify images, which can then be used to create containers.  We will not use this aspect of the technology because, as you will see later, we will use an already-built and ready-to-use image in order to create our needed container.
+Docker provides the ability to create, build and/or modify images, which can then be used to create containers.  For the MC generator, ML learning and CMS open data lessons, we will use already-built and ready-to-use images in order to create our needed container, but we will exercise building images with some additional code later on during the Midsummer QCD school hands-on sessions.
 
 ## Commands Cheatsheet
 
