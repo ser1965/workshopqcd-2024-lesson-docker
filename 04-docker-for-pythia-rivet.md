@@ -28,7 +28,7 @@ The first time you start a container, a docker image file gets downloaded from a
 
 The containers do not have modern editors and it is expected that you mount your working directory from the local computer into the container, and use your normal editor for editing the files. Note that all your compiling and executing still has to be done in the Docker container!
 
-First, before you start up your container, create a local directory where you will be doing your code development. In the examples below, it is called `rivet_work`, and the variable will record your working directory path. You may choose a different location and a shorter directory name if you like.
+First, before you start up your container, create a local directory where you will be doing your code development. In the examples below, it is called `rivet_work`. You may choose a different directory name if you like.
 
 ## Start the container
 
