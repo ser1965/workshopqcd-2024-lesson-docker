@@ -1,5 +1,5 @@
 ---
-title: "Docker containers for Pythia and Rivet"
+title: "Docker containers for Monte Carlo generators and Rivet"
 teaching: 15
 exercises: 20
 ---
@@ -19,7 +19,7 @@ exercises: 20
 
 ## Overview
 
-You will learn about [Rivet](https://gitlab.com/hepcedar/rivet) during this QCD school. The Rivet project provides [container images](https://gitlab.com/hepcedar/rivet/-/blob/release-3-1-x/doc/tutorials/docker.md) with Rivet and Monte Carlo generators included. For now, we will download the container image with Rivet and Pythia.
+You will learn about [Rivet](https://gitlab.com/hepcedar/rivet) during this QCD school. The Rivet project provides [container images](https://gitlab.com/hepcedar/rivet/-/blob/release-3-1-x/doc/tutorials/docker.md) with Rivet and Monte Carlo generators included. For now, we will download the Rivet container images with Pythia and Sherpa code included.
 
 
 ## Rivet containers
@@ -28,15 +28,15 @@ The first time you start a container, a docker image file gets downloaded from a
 
 The containers do not have modern editors and it is expected that you mount your working directory from the local computer into the container, and use your normal editor for editing the files. Note that all your compiling and executing still has to be done in the Docker container!
 
-First, before you start up your container, create a local directory where you will be doing your code development. In the examples below, it is called `rivet_work`. You may choose a different directory name if you like.
+First, before you start up your container, create a local directory where you will be doing your code development. In the examples below, it is called `pythia_work` or `sherpa_work`. You may choose a different directory name if you like.
 
-## Start the container
+## Start the Pythia container
 
 Create the shared directory in your working area:
 
 ```bash
-mkdir rivet_work
-cd rivet_work
+mkdir pythia_work
+cd pythia_work
 ```
 
 Start the container with
@@ -89,9 +89,9 @@ Create a file on your local host and make sure that you can see it in the contai
 
 :::::::::::::::: solution
 
-Open the editor in your host system, create a file `example.txt` and save it to the shared working area in `rivet_work`.
+Open the editor in your host system, create a file `example.txt` and save it to the shared working area in `pythia_work`.
 
-Start a container in your shared `rivet_work` directory:
+Start a container in your shared `pythia_work` directory:
 
 ```bash
 docker run -v $PWD:/host -it --rm hepstore/rivet-pythia
@@ -142,13 +142,13 @@ cat output.txt
 
 
 
-<!-- ### Challenge 3
+### Challenge 3
 
-Copy an example code `main01.cc` and `Makefile*` from `/usr/local/share/Pythia8/examples/` of the container to your shared area. Compile the code with `make`and run it.
+In the Pythia container, copy a Pythia example code `main01.cc`, and `Makefile` and `Makefile.inc` from `/usr/local/share/Pythia8/examples/` of the container to your shared area. Compile the code with `make` and run it.
 
 :::::::::::::::: solution
 
-Start the root container with
+Start the Pythia container with
 
 ```bash
 docker run -v $PWD:/host -it --rm hepstore/rivet-pythia
@@ -170,13 +170,12 @@ cp /usr/local/share/Pythia8/examples/Makefile* .
 Compile and run
 
 ```bash
-make main01.cc & ./main01
+make main01 & ./main01
 ```
 
-FIXME: this does not work
 
 :::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::: -->
+:::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
