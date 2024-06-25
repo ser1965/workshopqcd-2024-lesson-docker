@@ -435,7 +435,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02-installing-docker"><p>Content from <a href="02-installing-docker.html">Installing docker</a></p>
 <hr>
-<p>Last updated on 2024-06-19 |
+<p>Last updated on 2024-06-25 |
         
         <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/edit/main/episodes/02-installing-docker.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
@@ -499,7 +499,7 @@ instructions, we do not rely on the Graphical UI that it offers.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a> following the WSL2 instructions or <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a>
 following the Linux instructions (Ubuntu/debian).</p>
@@ -507,11 +507,11 @@ following the Linux instructions (Ubuntu/debian).</p>
 <a href="https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/" class="external-link">activate
 <code>systemd</code></a> on your WSL2.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a></p>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
+<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a> or <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a>
 following the instruction for your Linux flavour.</p>
@@ -598,10 +598,11 @@ isolated machine (running on the host machine) with mostly its own
 operating system and the adequate software and run-time environment to
 process CMS open data.</p>
 <p>Docker provides the ability to create, build and/or modify images,
-which can then be used to create containers. We will not use this aspect
-of the technology because, as you will see later, we will use an
-already-built and ready-to-use image in order to create our needed
-container.</p>
+which can then be used to create containers. For the MC generator, ML
+learning and CMS open data lessons, we will use already-built and
+ready-to-use images in order to create our needed container, but we will
+exercise building images with some additional code later on during the
+Midsummer QCD school hands-on sessions.</p>
 </section><section id="commands-cheatsheet"><h2 class="section-heading">Commands Cheatsheet<a class="anchor" aria-label="anchor" href="#commands-cheatsheet"></a>
 </h2>
 <hr class="half-width">
@@ -924,7 +925,7 @@ start</a>.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Windows WSL, Mac and Linux without X11-forwarding </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -973,7 +974,7 @@ started VNC, stop it first:</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Linux using X11-forwarding </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1032,7 +1033,7 @@ the container.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Open the editor in your host system, create a file
 <code>example.txt</code> and save it to the shared working area, either
@@ -1081,7 +1082,7 @@ sure that you get it to your host</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Restart the python container with</p>
 <div class="codewrapper sourceCode" id="cb23">
@@ -1154,7 +1155,7 @@ it to your host</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Restart the root container with</p>
 <div class="codewrapper sourceCode" id="cb28">
@@ -1410,7 +1411,7 @@ the container.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Open the editor in your host system, create a file
 <code>example.txt</code> and save it to the shared working area in
@@ -1452,7 +1453,7 @@ your local area.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>If you are not already in the container, start it with</p>
 <div class="codewrapper sourceCode" id="cb14">
@@ -1496,7 +1497,7 @@ local area.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Start a container in your shared <code>sherpa_work</code>
 directory:</p>
@@ -1542,7 +1543,7 @@ shared area. Compile the code with <code>make</code> and run it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>Start the Pythia container in your shared <code>pythia_work</code>
 directory:</p>
