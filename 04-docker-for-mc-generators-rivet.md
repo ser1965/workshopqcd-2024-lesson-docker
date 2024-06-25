@@ -65,6 +65,8 @@ cd /host
 ```
 
 You will be doing all your work in this shared directory.
+You can also set this directory as the working directory with flag `-w /host` in the `docker run...` command.
+
 For now, exit from the container:
 
 ```bash
@@ -94,13 +96,12 @@ Open the editor in your host system, create a file `example.txt` and save it to 
 Start a container in your shared `pythia_work` directory:
 
 ```bash
-docker run -v $PWD:/host -it --rm hepstore/rivet-pythia
+docker run -v $PWD:/host -w /host -it --rm hepstore/rivet-pythia
 ```
 
-In the container prompt, move to `/host`, list the files and show the contents of the newly created file:
+In the container prompt, list the files and show the contents of the newly created file:
 
 ```bash
-cd /host
 ls
 cat example.txt
 ```
@@ -119,7 +120,7 @@ Create a file in the container and make sure that you can see it on your local a
 If you are not already in the container, start it with
 
 ```bash
-docker run -v $PWD:/host -it --rm hepstore/rivet-pythia
+docker run -v $PWD:/host  -w /host -it --rm hepstore/rivet-pythia
 ```
 
 Move to the `/host` directory and write some output to a file
@@ -151,16 +152,10 @@ In the Pythia container, copy a Pythia example code `main01.cc`, and `Makefile` 
 Start the Pythia container with
 
 ```bash
-docker run -v $PWD:/host -it --rm hepstore/rivet-pythia
+docker run -v $PWD:/host -w /host -it --rm hepstore/rivet-pythia
 ```
 
-Move to the shared area
-
-```bash
-cd /host
-```
-
-Copy the files with
+Copy the files to your working area with
 
 ```bash
 cp /usr/local/share/Pythia8/examples/main01.cc .
