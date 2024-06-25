@@ -80,6 +80,41 @@ docker image ls
 docker ps -a
 ```
 
+## Start the Sherpa container
+
+Create the shared directory in your working area:
+
+```bash
+mkdir sherpa_work
+cd sherpa_work
+```
+
+Start the container with
+
+```bash
+docker run -v $PWD:/host -w /host -it --rm hepstore/rivet-sherpa:3.1.7-2.2.12
+```
+
+This will share you current working directory (`$PWD`) into the container's `/host` directory.
+
+The flag `--rm` makes docker delete the local container when you exit and every time you run this command it creates a new container. This means that changes done anywhere else than in the shared `/host` directory will be deleted.
+
+Note that the `--rm` flag does not delete the image that you just downloaded.
+
+
+You will get a container prompt similar this:
+
+```output
+root@2560cb95ef24:/host#
+```
+
+The flag `-w /host` has set `/host` as the working directory. You will be doing all your work in this shared directory.
+
+For now, exit from the container:
+
+```bash
+exit
+```
 
 ## Test the environment
 
@@ -144,6 +179,29 @@ cat output.txt
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ### Challenge 3
+
+Check the Rivet version in the Sherpa container. 
+
+:::::::::::::::: solution
+
+Start a container in your shared `sherpa_work` directory:
+
+```bash
+docker run -v $PWD:/host -w /host -it --rm hepstore/rivet-sherpa:3.1.7-2.2.12
+```
+
+In the container prompt, check the Rivet version with
+
+```bash
+rivet --version
+```
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Challenge 4
 
 In the Pythia container, copy a Pythia example code `main01.cc`, and `Makefile` and `Makefile.inc` from `/usr/local/share/Pythia8/examples/` of the container to your shared area. Compile the code with `make` and run it.
 
