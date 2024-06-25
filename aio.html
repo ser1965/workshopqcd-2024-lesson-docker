@@ -495,7 +495,7 @@ instructions, we do not rely on the Graphical UI that it offers.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a> following the WSL2 instructions or <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a>
 following the Linux instructions (Ubuntu/debian).</p>
@@ -503,11 +503,11 @@ following the Linux instructions (Ubuntu/debian).</p>
 <a href="https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/" class="external-link">activate
 <code>systemd</code></a> on your WSL2.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a></p>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
+<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a> or <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a>
 following the instruction for your Linux flavour.</p>
@@ -1320,8 +1320,10 @@ you just downloaded.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">cd</span> /host</span></code></pre>
 </div>
-<p>You will be doing all your work in this shared directory. For now,
-exit from the container:</p>
+<p>You will be doing all your work in this shared directory. You can
+also set this directory as the working directory with flag
+<code>-w /host</code> in the <code>docker run...</code> command.</p>
+<p>For now, exit from the container:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1357,7 +1359,7 @@ the container.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Open the editor in your host system, create a file
 <code>example.txt</code> and save it to the shared working area in
@@ -1367,16 +1369,15 @@ directory:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
 </div>
-<p>In the container prompt, move to <code>/host</code>, list the files
-and show the contents of the newly created file:</p>
+<p>In the container prompt, list the files and show the contents of the
+newly created file:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">cd</span> /host</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">ls</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">cat</span> example.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">cat</span> example.txt</span></code></pre>
 </div>
 </div>
 </div>
@@ -1400,13 +1401,13 @@ your local area.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>If you are not already in the container, start it with</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host  <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
 </div>
 <p>Move to the <code>/host</code> directory and write some output to a
 file</p>
@@ -1450,32 +1451,26 @@ shared area. Compile the code with <code>make</code> and run it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Start the Pythia container with</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$PWD</span>:/host <span class="at">-w</span> /host <span class="at">-it</span> <span class="at">--rm</span> hepstore/rivet-pythia</span></code></pre>
 </div>
-<p>Move to the shared area</p>
+<p>Copy the files to your working area with</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">cd</span> /host</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/main01.cc .</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/Makefile<span class="pp">*</span> .</span></code></pre>
 </div>
-<p>Copy the files with</p>
+<p>Compile and run</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/main01.cc .</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">cp</span> /usr/local/share/Pythia8/examples/Makefile<span class="pp">*</span> .</span></code></pre>
-</div>
-<p>Compile and run</p>
-<div class="codewrapper sourceCode" id="cb15">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">make</span> main01 <span class="kw">&amp;</span> <span class="ex">./main01</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">make</span> main01 <span class="kw">&amp;</span> <span class="ex">./main01</span></span></code></pre>
 </div>
 </div>
 </div>
