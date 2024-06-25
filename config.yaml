@@ -64,6 +64,7 @@ episodes:
 - 01-introduction.md
 - 02-installing-docker.md
 - 03-docker-for-cms-opendata.md
+- 04-docker-for-pythia-rivet.md
 
 # Information for Learners
 learners: 

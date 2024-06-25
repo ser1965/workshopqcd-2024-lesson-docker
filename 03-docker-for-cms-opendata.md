@@ -26,7 +26,7 @@ cover containers and everything you can do with Docker. <!--- Reach out to the o
 using the [dedicated Mattermost channel][mattermost]
 if we are missing something. -->
 
-Three types of container images are provided: [one with the CMS software (CMSSW)](https://gitlab.cern.ch/cms-cloud/cmssw-docker-opendata/-/blob/master/README.md) compatible with the released data, and two others with [ROOT](https://gitlab.cern.ch/cms-cloud/root-vnc) and [python](https://gitlab.cern.ch/cms-cloud/python-vnc) libraries needed in this workshop. 
+For CMS open data work, three types of container images are provided: [one with the CMS software (CMSSW)](https://gitlab.cern.ch/cms-cloud/cmssw-docker-opendata/-/blob/master/README.md) compatible with the released data, and two others with [ROOT](https://gitlab.cern.ch/cms-cloud/root-vnc) and [python](https://gitlab.cern.ch/cms-cloud/python-vnc) libraries needed in this workshop. 
 
 You will only need the CMSSW container, if you want to access the CMS data in the MiniAOD format (you will learn about them later). Access to it requires CMSSW software that you will not be able to install on your own computer. 
 
