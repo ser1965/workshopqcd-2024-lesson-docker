@@ -394,6 +394,15 @@ comes with it!</li>
 <div class="accordion-body">
 <p>Activate <a href="https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command" class="external-link">WSL2</a>
 and use the Ubuntu terminal.</p>
+<p>Note that if the Ubuntu terminal does not open properly, you might
+need to enable Virtualization in the BIOS menu.</p>
+<p>You might also need to set a parameter in Command prompt (run it as
+admin):</p>
+<pre><code>bcdedit /set {current} hypervisorlaunchtype auto</code></pre>
+<p>and restart the computer.</p>
+<p>Note that if you use virtual images e.g. VirtualBox on the same
+computer, you need to set that parameter to <code>off</code> and
+restart. So no WSL2 and VirtualBox in the same session.</p>
 </div>
 </div>
 </div>
@@ -480,9 +489,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/instructor/index.html",
   "identifier": "https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/instructor/index.html",
-  "dateCreated": "2024-06-25",
-  "dateModified": "2024-06-25",
-  "datePublished": "2024-06-25"
+  "dateCreated": "2024-06-26",
+  "dateModified": "2024-06-26",
+  "datePublished": "2024-06-26"
 }
 
   </script><script>
