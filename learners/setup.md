@@ -24,7 +24,19 @@ Windows users: the Unix tutorial gives `git bash` as an option. However, for all
 
 ### Windows
 
-Activate [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command) and use the Ubuntu terminal.
+Activate [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install#install-wsl-command) and use the Ubuntu terminal. 
+
+Note that if the Ubuntu terminal does not open properly, you might need to enable Virtualization in the BIOS menu. 
+
+You might also need to set a parameter in Command prompt (run it as admin):
+
+```
+bcdedit /set {current} hypervisorlaunchtype auto
+```
+
+and restart the computer.
+
+Note that if you use virtual images e.g. VirtualBox on the same computer, you need to set that parameter to `off` and restart. So no WSL2 and VirtualBox in the same session.
 
 ::::::::::::::::::::::::
 

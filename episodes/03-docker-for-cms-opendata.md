@@ -77,6 +77,14 @@ jupyter-lab --ip=0.0.0.0 --no-browser
 
 and open the link that is printed out in the message.
 
+:::::::::::::::::::::::::::::: callout
+
+### Link does not work?
+
+Try replacing `127.0.0.1` in the link with `localhost`.
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 Click on the Jupyter notebook icon to open a new notebook. 
 
 
