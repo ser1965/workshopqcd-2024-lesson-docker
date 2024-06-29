@@ -79,6 +79,8 @@ Build a new image with
 docker build --tag python-emoji .
 ```
 
+The command `docker build` uses `Dockerfile` (in the directory in which it is run) to build an image with name defined with `--tag`. Note the dot (.) at the end of the line.
+
 ```output
 [+] Building 37.2s (7/7) FINISHED                                                                        docker:default
  => [internal] load build definition from Dockerfile                                                               0.1s
@@ -112,8 +114,7 @@ What's Next?
   View a summary of image vulnerabilities and recommendations → docker scout quickview
 ```
 
-The command `docker build` uses `Dockerfile` (in the directory in which it is run) to build an image with name defined with `--tag`. Note the dot (.) at the end of the line.
-
+You can check with ` docker images` that the image has appeared in the list of images.
 
 ## Using the image locally
 
@@ -218,6 +219,9 @@ You can use the `-w` to open the container in that directory.
 ```bash
 docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python myscript.py
 ```
+```output
+👻
+```
 
 
 :::::::::::::::::::::::::
@@ -248,13 +252,17 @@ Run this with
 docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python printme.py sparkles
 ```
 
+```output
+✨
+```
+
 As the command has become long, you could define it as "alias". First, verify what aliases you have:
 
 ```bash
 alias
 ```
 
-If `printme` is not in use already, you can use it as alias to the long command above:
+If `printme` is not in use already, define it as alias to the long command above:
 
 ```bash
 alias printme="docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python printme.py"
@@ -265,10 +273,29 @@ Now try:
 ```bash
 printme party_popper
 ```
+
+```output
+🎉
+```
+
 Have fun!
 
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
+
+## Add code to the image
+
+If the code that you use is stable, you can add it to the container image.
+
+Create a `code` subdirectory and copy our production-quality `printme.py` script in it.
+
+Modify the `Dockerfile` to include it in the container:
+
+```
+
+```
+
+
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
