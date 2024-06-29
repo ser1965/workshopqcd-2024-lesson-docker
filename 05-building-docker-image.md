@@ -54,6 +54,7 @@ We will use a small basic python image as example and add one python package in 
 Python container images are available from the Docker Hub: https://hub.docker.com/_/python
 
 There's a long list of them, and we choose a tag with
+
 - "slim" to keep it small and fast
 - "bookworm" for a stable [Debian release](https://wiki.debian.org/DebianReleases).
 
@@ -219,10 +220,8 @@ You can use the `-w` to open the container in that directory.
 ```bash
 docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python myscript.py
 ```
-```output
-👻
-```
 
+👻
 
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
@@ -252,9 +251,7 @@ Run this with
 docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python printme.py sparkles
 ```
 
-```output
 ✨
-```
 
 As the command has become long, you could define it as "alias". First, verify what aliases you have:
 
@@ -274,9 +271,7 @@ Now try:
 printme party_popper
 ```
 
-```output
 🎉
-```
 
 Have fun!
 
@@ -289,12 +284,73 @@ If the code that you use is stable, you can add it to the container image.
 
 Create a `code` subdirectory and copy our production-quality `printme.py` script in it.
 
-Modify the `Dockerfile` to include it in the container:
+Modify the `Dockerfile` to use `/usr/src/code` as the working deirytory and copy files in the container:
 
 ```
+FROM python:slim-bookworm
+RUN pip install emoji
 
+WORKDIR /usr/src/code
+
+COPY code .
 ```
 
+Build the image with this new definition. It is a good practice to use version tags:
+
+```bash
+docker build --tag python-emoji:v0.1 .
+```
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Inspect the new container 
+
+Open a bash shell in the container and check if the file is present
+
+:::::::::::::::: solution
+
+Start the container in its local bash shell:
+
+```bash
+docker run -it --rm python-emoji /bin/bash
+```
+
+Note that the container prompt indicates the working directory. List the contents:
+
+```bash
+root@03efa1b45f1b:/usr/src/code# ls
+```
+
+```output
+printme.py
+```
+
+Exit from the container with `exit`.
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Run the script 
+
+Run the script that is now in the container.
+
+:::::::::::::::: solution
+
+Start the container 
+
+```bash
+ docker run -it --rm python-emoji python printme.py magic_wand
+```
+
+There's no need to pass the local directory into the container as the code is stored in the container image.
+
+🪄
+
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
 
 
 
