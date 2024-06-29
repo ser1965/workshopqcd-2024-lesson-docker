@@ -511,7 +511,7 @@ instructions, we do not rely on the Graphical UI that it offers.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a> following the WSL2 instructions or <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a>
 following the Linux instructions (Ubuntu/debian).</p>
@@ -519,11 +519,11 @@ following the Linux instructions (Ubuntu/debian).</p>
 <a href="https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/" class="external-link">activate
 <code>systemd</code></a> on your WSL2.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a></p>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
+<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a> or <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a>
 following the instruction for your Linux flavour.</p>
@@ -950,7 +950,7 @@ start</a>.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Windows WSL, Mac and Linux without X11-forwarding </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -999,7 +999,7 @@ started VNC, stop it first:</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Linux using X11-forwarding </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1058,7 +1058,7 @@ the container.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Open the editor in your host system, create a file
 <code>example.txt</code> and save it to the shared working area, either
@@ -1107,7 +1107,7 @@ sure that you get it to your host</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Restart the python container with</p>
 <div class="codewrapper sourceCode" id="cb23">
@@ -1180,7 +1180,7 @@ it to your host</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Restart the root container with</p>
 <div class="codewrapper sourceCode" id="cb28">
@@ -1703,8 +1703,11 @@ recent tag. Note that versions may change.</p>
 <p>We will use a small basic python image as example and add one python
 package in it.</p>
 <p>Python container images are available from the Docker Hub: <a href="https://hub.docker.com/_/python" class="external-link uri">https://hub.docker.com/_/python</a></p>
-<p>There’s a long list of them, and we choose a tag with - “slim” to
-keep it small and fast - “bookworm” for a stable <a href="https://wiki.debian.org/DebianReleases" class="external-link">Debian release</a>.</p>
+<p>There’s a long list of them, and we choose a tag with</p>
+<ul>
+<li>“slim” to keep it small and fast</li>
+<li>“bookworm” for a stable <a href="https://wiki.debian.org/DebianReleases" class="external-link">Debian release</a>.</li>
+</ul>
 <p>The recipe for the image build is called <code>Dockerfile</code>.
 Create a new working directory, e.g. <code>docker-image-build</code> and
 move to it.</p>
@@ -1795,7 +1798,7 @@ documentation</a> how to use it and test that it works as expected.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1831,7 +1834,7 @@ command.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Start the container in its local bash shell:</p>
 <div class="codewrapper sourceCode" id="cb7">
@@ -1887,7 +1890,7 @@ container.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Make a new subdirectory (e.g. <code>test</code>) and save the code in
 a file (e.g. <code>myscript.py</code>) there, with</p>
@@ -1905,11 +1908,7 @@ directory.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span>  <span class="at">-v</span> <span class="st">"</span><span class="va">$PWD</span><span class="st">"</span>/test:/usr/src/mycode <span class="at">-w</span> /usr/src/mycode python-emoji python myscript.py</span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>👻</code></pre>
-</div>
+<p>👻</p>
 </div>
 </div>
 </div>
@@ -1932,7 +1931,7 @@ you have tried a few already 😉</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>In the test directory and save a file (e.g. <code>printme.py</code>)
 with</p>
@@ -1943,41 +1942,33 @@ if __name__ == "__main__":
   anemoji = sys.argv[1]
   print(em(":"+anemoji+":"))</code></pre>
 <p>Run this with</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span>  <span class="at">-v</span> <span class="st">"</span><span class="va">$PWD</span><span class="st">"</span>/test:/usr/src/mycode <span class="at">-w</span> /usr/src/mycode python-emoji python printme.py sparkles</span></code></pre>
+</div>
+<p>✨</p>
+<p>As the command has become long, you could define it as “alias”.
+First, verify what aliases you have:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span>  <span class="at">-v</span> <span class="st">"</span><span class="va">$PWD</span><span class="st">"</span>/test:/usr/src/mycode <span class="at">-w</span> /usr/src/mycode python-emoji python printme.py sparkles</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>✨</code></pre>
-</div>
-<p>As the command has become long, you could define it as “alias”.
-First, verify what aliases you have:</p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="bu">alias</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">alias</span></span></code></pre>
 </div>
 <p>If <code>printme</code> is not in use already, define it as alias to
 the long command above:</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="bu">alias</span> printme=<span class="st">"docker run -it --rm  -v "</span><span class="va">$PWD</span><span class="st">"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python printme.py"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="bu">alias</span> printme=<span class="st">"docker run -it --rm  -v "</span><span class="va">$PWD</span><span class="st">"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python printme.py"</span></span></code></pre>
 </div>
 <p>Now try:</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">printme</span> party_popper</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">printme</span> party_popper</span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>🎉</code></pre>
-</div>
+<p>🎉</p>
 <p>Have fun!</p>
 </div>
 </div>
@@ -1990,9 +1981,96 @@ the long command above:</p>
 image.</p>
 <p>Create a <code>code</code> subdirectory and copy our
 production-quality <code>printme.py</code> script in it.</p>
-<p>Modify the <code>Dockerfile</code> to include it in the
-container:</p>
-<pre><code></code></pre>
+<p>Modify the <code>Dockerfile</code> to use <code>/usr/src/code</code>
+as the working deirytory and copy files in the container:</p>
+<pre><code>FROM python:slim-bookworm
+RUN pip install emoji
+
+WORKDIR /usr/src/code
+
+COPY code .</code></pre>
+<p>Build the image with this new definition. It is a good practice to
+use version tags:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">--tag</span> python-emoji:v0.1 .</span></code></pre>
+</div>
+<div id="inspect-the-new-container" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="inspect-the-new-container" class="callout-inner">
+<h3 class="callout-title">Inspect the new container<a class="anchor" aria-label="anchor" href="#inspect-the-new-container"></a>
+</h3>
+<div class="callout-content">
+<p>Open a bash shell in the container and check if the file is
+present</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
+<p>Start the container in its local bash shell:</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> python-emoji /bin/bash</span></code></pre>
+</div>
+<p>Note that the container prompt indicates the working directory. List
+the contents:</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">root@03efa1b45f1b:/usr/src/code#</span> ls</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span><span class="va">printme.py</span></span></code></pre>
+</div>
+<p>Exit from the container with <code>exit</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="run-the-script" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="run-the-script" class="callout-inner">
+<h3 class="callout-title">Run the script<a class="anchor" aria-label="anchor" href="#run-the-script"></a>
+</h3>
+<div class="callout-content">
+<p>Run the script that is now in the container.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<p>Start the container</p>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a> <span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> python-emoji python printme.py magic_wand</span></code></pre>
+</div>
+<p>There’s no need to pass the local directory into the container as the
+code is stored in the container image.</p>
+<p>🪄</p>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
