@@ -43,13 +43,11 @@ The **registry name** is like a domain name. If no registry name is given, the d
 
 The **repository** is a collection of container images within the container registry. For the MC generator images, it is `hepstore` in Docker Hub, for the CMS open data images, it is `cms-cloud` in the CERN GitLab.
 
-The **image name** indicates
-
-A version tag comes after `:`. If no value is given, the latest version is taken. Also, `:latest` takes the most recent tag. Note that versions may change.
+A **version** tag comes after `:`. If no value is given, the latest version is taken. Also, `:latest` takes the most recent tag. Note that versions may change, and it is good practice to specify the version.
 
 ## Building an image
 
-We will use a small basic python image as example and add one python package in it.
+We will use a small basic Python image as example and add one Python package in it.
 
 Python container images are available from the Docker Hub: https://hub.docker.com/_/python
 
@@ -65,7 +63,7 @@ mkdir docker-image-build
 cd docker-image-build
 ```
 
-Choose an example python package to install, for example [emoji](https://pypi.org/project/emoji/).
+Choose an example Python package to install, for example [emoji](https://pypi.org/project/emoji/).
 
 Create a new file named `Dockerfile` with the following content
 
@@ -128,11 +126,11 @@ docker run -it --rm python-emoji
 
 The flag `--rm` makes docker delete the local container when you exit.
 
-It will give you a python prompt. 
+It will give you a Python prompt. 
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Test that python package is there
+### Test that Python package is there
 
 Read from the [emoji package documentation](https://pypi.org/project/emoji/) how to use it and test that it works as expected.
 
@@ -157,7 +155,7 @@ Exit with `exit()` or Ctrl-d.
 
 ### Inspect the container from the bash shell 
 
-Start the container bash shell and check what python packages are installed.
+Start the container bash shell and check what Python packages are installed.
 
 Hint: use `/bin/bash` in the `docker run...` command.
 
@@ -169,7 +167,7 @@ Start the container in its local bash shell:
 docker run -it --rm python-emoji /bin/bash
 ```
 
-Use `pip list` to see the python packages:
+Use `pip list` to see the Python packages:
 
 ```bash
 root@aef232a1babe:/# pip list
@@ -202,7 +200,7 @@ Exit from the container with `exit`.
 ### Run a single Python script in the container
 
 Sometimes, it is convenient to pass a single Python script to the container.
-Write an example python script to be passed into the container.
+Write an example Python script to be passed into the container.
 
 :::::::::::::::: solution
 
@@ -284,7 +282,7 @@ If the code that you use is stable, you can add it to the container image.
 
 Create a `code` subdirectory and copy our production-quality `printme.py` script in it.
 
-Modify the `Dockerfile` to use `/usr/src/code` as the working deirytory and copy files in the container:
+Modify the `Dockerfile` to use `/usr/src/code` as the working directory and copy the local `code` subdirectory into the container (the dot brings it to the working directory defined in the previous line):
 
 ```
 FROM python:slim-bookworm
