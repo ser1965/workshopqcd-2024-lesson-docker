@@ -511,7 +511,7 @@ instructions, we do not rely on the Graphical UI that it offers.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a> following the WSL2 instructions or <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a>
 following the Linux instructions (Ubuntu/debian).</p>
@@ -519,11 +519,11 @@ following the Linux instructions (Ubuntu/debian).</p>
 <a href="https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/" class="external-link">activate
 <code>systemd</code></a> on your WSL2.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a></p>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
+<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
 <p>Install <a href="https://docs.docker.com/get-docker/" class="external-link">Docker
 Destop</a> or <a href="https://docs.docker.com/engine/install/" class="external-link">docker-engine</a>
 following the instruction for your Linux flavour.</p>
@@ -950,7 +950,7 @@ start</a>.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Windows WSL, Mac and Linux without X11-forwarding </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -999,7 +999,7 @@ started VNC, stop it first:</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Linux using X11-forwarding </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1058,7 +1058,7 @@ the container.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Open the editor in your host system, create a file
 <code>example.txt</code> and save it to the shared working area, either
@@ -1107,7 +1107,7 @@ sure that you get it to your host</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Restart the python container with</p>
 <div class="codewrapper sourceCode" id="cb23">
@@ -1180,7 +1180,7 @@ it to your host</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Restart the root container with</p>
 <div class="codewrapper sourceCode" id="cb28">
@@ -1666,8 +1666,8 @@ can build an image of your own with everything you need.</p>
 <p>We will now exercise how to do it, first with a simple example and
 then with a container image that we have been using in the
 exercises.</p>
-<p>But first, let us see from where we got the images that we have been
-using so far.</p>
+<p>But first, let us see where we get the images that we have been using
+so far.</p>
 </section><section id="container-image-registries"><h2 class="section-heading">Container image registries<a class="anchor" aria-label="anchor" href="#container-image-registries"></a>
 </h2>
 <hr class="half-width">
@@ -1780,12 +1780,12 @@ appeared in the list of images.</p>
 <p>The flag <code>--rm</code> makes docker delete the local container
 when you exit.</p>
 <p>It will give you a Python prompt.</p>
-<div id="test-that-python-package-is-there" class="callout challenge">
+<div id="test-that-the-python-package-is-in-the-container" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="test-that-python-package-is-there" class="callout-inner">
-<h3 class="callout-title">Test that Python package is there<a class="anchor" aria-label="anchor" href="#test-that-python-package-is-there"></a>
+<div id="test-that-the-python-package-is-in-the-container" class="callout-inner">
+<h3 class="callout-title">Test that the Python package is in the container<a class="anchor" aria-label="anchor" href="#test-that-the-python-package-is-in-the-container"></a>
 </h3>
 <div class="callout-content">
 <p>Read from the <a href="https://pypi.org/project/emoji/" class="external-link">emoji package
@@ -1892,15 +1892,16 @@ container.</p>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>Make a new subdirectory (e.g. <code>test</code>) and save the code in
-a file (e.g. <code>myscript.py</code>) there, with</p>
+<p>Make a new subdirectory (e.g. <code>test</code>) and save the Python
+code in a file (e.g. <code>myscript.py</code>):</p>
 <pre><code>from emoji import emojize as em
 print(em(":ghost:"))</code></pre>
-<p>Now, you must pass this into the container using the <code>-v</code>
-flag in the <code>docker run ...</code> command. We know to use the
-container directory <code>/usr/src</code> from the Python container
-image <a href="https://hub.docker.com/_/python" class="external-link">usage
-instructions</a>.</p>
+<p>Now, you must pass this script into the container using the
+<code>-v</code> flag in the <code>docker run ...</code> command. We know
+to use the container directory <code>/usr/src</code> from the Python
+container image <a href="https://hub.docker.com/_/python" class="external-link">usage
+instructions</a> and we choose to name the container directory
+<code>mycode</code>.</p>
 <p>You can use the <code>-w</code> to open the container in that
 directory.</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -1948,8 +1949,16 @@ if __name__ == "__main__":
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span>  <span class="at">-v</span> <span class="st">"</span><span class="va">$PWD</span><span class="st">"</span>/test:/usr/src/mycode <span class="at">-w</span> /usr/src/mycode python-emoji python printme.py sparkles</span></code></pre>
 </div>
 <p>✨</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> For fun </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<p>Use Terminal.app</p>
 <p>As the command has become long, you could define it as “alias”.
-First, verify what aliases you have:</p>
+First, verify your existing aliases:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1970,6 +1979,10 @@ the long command above:</p>
 </div>
 <p>🎉</p>
 <p>Have fun!</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
