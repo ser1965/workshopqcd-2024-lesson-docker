@@ -1686,14 +1686,14 @@ project.</p>
 within the container registry. For the MC generator images, it is
 <code>hepstore</code> in Docker Hub, for the CMS open data images, it is
 <code>cms-cloud</code> in the CERN GitLab.</p>
-<p>The <strong>image name</strong> indicates</p>
-<p>A version tag comes after <code>:</code>. If no value is given, the
-latest version is taken. Also, <code>:latest</code> takes the most
-recent tag. Note that versions may change.</p>
+<p>A <strong>version</strong> tag comes after <code>:</code>. If no
+value is given, the latest version is taken. Also, <code>:latest</code>
+takes the most recent tag. Note that versions may change, and it is good
+practice to specify the version.</p>
 </section><section id="building-an-image"><h2 class="section-heading">Building an image<a class="anchor" aria-label="anchor" href="#building-an-image"></a>
 </h2>
 <hr class="half-width">
-<p>We will use a small basic python image as example and add one python
+<p>We will use a small basic Python image as example and add one Python
 package in it.</p>
 <p>Python container images are available from the Docker Hub: <a href="https://hub.docker.com/_/python" class="external-link uri">https://hub.docker.com/_/python</a></p>
 <p>There’s a long list of them, and we choose a tag with</p>
@@ -1710,7 +1710,7 @@ move to it.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">mkdir</span> docker-image-build</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> docker-image-build</span></code></pre>
 </div>
-<p>Choose an example python package to install, for example <a href="https://pypi.org/project/emoji/" class="external-link">emoji</a>.</p>
+<p>Choose an example Python package to install, for example <a href="https://pypi.org/project/emoji/" class="external-link">emoji</a>.</p>
 <p>Create a new file named <code>Dockerfile</code> with the following
 content</p>
 <pre><code>FROM python:slim-bookworm
@@ -1772,13 +1772,13 @@ appeared in the list of images.</p>
 </div>
 <p>The flag <code>--rm</code> makes docker delete the local container
 when you exit.</p>
-<p>It will give you a python prompt.</p>
+<p>It will give you a Python prompt.</p>
 <div id="test-that-python-package-is-there" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="test-that-python-package-is-there" class="callout-inner">
-<h3 class="callout-title">Test that python package is there<a class="anchor" aria-label="anchor" href="#test-that-python-package-is-there"></a>
+<h3 class="callout-title">Test that Python package is there<a class="anchor" aria-label="anchor" href="#test-that-python-package-is-there"></a>
 </h3>
 <div class="callout-content">
 <p>Read from the <a href="https://pypi.org/project/emoji/" class="external-link">emoji package
@@ -1815,7 +1815,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <h3 class="callout-title">Inspect the container from the bash shell<a class="anchor" aria-label="anchor" href="#inspect-the-container-from-the-bash-shell"></a>
 </h3>
 <div class="callout-content">
-<p>Start the container bash shell and check what python packages are
+<p>Start the container bash shell and check what Python packages are
 installed.</p>
 <p>Hint: use <code>/bin/bash</code> in the <code>docker run...</code>
 command.</p>
@@ -1835,7 +1835,7 @@ command.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-it</span> <span class="at">--rm</span> python-emoji /bin/bash</span></code></pre>
 </div>
-<p>Use <code>pip list</code> to see the python packages:</p>
+<p>Use <code>pip list</code> to see the Python packages:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1873,7 +1873,7 @@ container.</p>
 </h3>
 <div class="callout-content">
 <p>Sometimes, it is convenient to pass a single Python script to the
-container. Write an example python script to be passed into the
+container. Write an example Python script to be passed into the
 container.</p>
 </div>
 </div>
@@ -1975,7 +1975,9 @@ image.</p>
 <p>Create a <code>code</code> subdirectory and copy our
 production-quality <code>printme.py</code> script in it.</p>
 <p>Modify the <code>Dockerfile</code> to use <code>/usr/src/code</code>
-as the working deirytory and copy files in the container:</p>
+as the working directory and copy the local <code>code</code>
+subdirectory into the container (the dot brings it to the working
+directory defined in the previous line):</p>
 <pre><code>FROM python:slim-bookworm
 RUN pip install emoji
 
