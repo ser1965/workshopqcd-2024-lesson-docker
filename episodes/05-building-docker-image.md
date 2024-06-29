@@ -25,7 +25,7 @@ Building an image from an existing image is easy and can be done with `docker` c
 
 We will now exercise how to do it, first with a simple example and then with a container image that we have been using in the exercises.
 
-But first, let us see from where we got the images that we have been using so far.
+But first, let us see where we get the images that we have been using so far.
 
 ## Container image registries
 
@@ -130,7 +130,7 @@ It will give you a Python prompt.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Test that Python package is there
+### Test that the Python package is in the container
 
 Read from the [emoji package documentation](https://pypi.org/project/emoji/) how to use it and test that it works as expected.
 
@@ -204,14 +204,14 @@ Write an example Python script to be passed into the container.
 
 :::::::::::::::: solution
 
-Make a new subdirectory (e.g. `test`) and save the code in a file (e.g. `myscript.py`) there, with
+Make a new subdirectory (e.g. `test`) and save the Python code in a file (e.g. `myscript.py`):
 
 ```
 from emoji import emojize as em
 print(em(":ghost:"))
 ```
 
-Now, you must pass this into the container using the `-v` flag in the `docker run ...` command. We know to use the container directory `/usr/src` from the Python container image [usage instructions](https://hub.docker.com/_/python).
+Now, you must pass this script into the container using the `-v` flag in the `docker run ...` command. We know to use the container directory `/usr/src` from the Python container image [usage instructions](https://hub.docker.com/_/python) and we choose to name the container directory `mycode`.
 
 You can use the `-w` to open the container in that directory.
 
@@ -251,7 +251,15 @@ docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-em
 
 ✨
 
-As the command has become long, you could define it as "alias". First, verify what aliases you have:
+:::::::::::::::: spoiler
+
+### For fun
+
+Use Terminal.app
+
+
+
+As the command has become long, you could define it as "alias". First, verify your existing aliases:
 
 ```bash
 alias
@@ -272,6 +280,9 @@ printme party_popper
 🎉
 
 Have fun!
+
+
+::::::::::::::::::::::::
 
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
