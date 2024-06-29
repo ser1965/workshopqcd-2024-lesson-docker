@@ -47,7 +47,7 @@ A **version** tag comes after `:`. If no value is given, the latest version is t
 
 ## Building an image
 
-We will use a small basic Python image as example and add one Python package in it.
+We will use a small Python image as a base image and add one Python package in it.
 
 Python container images are available from the Docker Hub: https://hub.docker.com/_/python
 
@@ -204,7 +204,7 @@ Write an example Python script to be passed into the container.
 
 :::::::::::::::: solution
 
-Make a new subdirectory (e.g. `test`) and save the Python code in a file (e.g. `myscript.py`):
+Make a new subdirectory (you can name it `test`) and save the Python code in a file (name it `myscript.py`):
 
 ```
 from emoji import emojize as em
@@ -232,7 +232,7 @@ Make the Python script configurable so that you can use any of the [available em
 
 :::::::::::::::: solution
 
-In the test directory and save a file (e.g. `printme.py`) with
+Save the following a file (e.g. `printme.py`) in the `test` directory:
 
 ```
 from emoji import emojize as em
@@ -253,13 +253,9 @@ docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-em
 
 :::::::::::::::: spoiler
 
-### For fun
+### For fun 🎁
 
-Use Terminal.app
-
-
-
-As the command has become long, you could define it as "alias". First, verify your existing aliases:
+As the docker command has become long, you could define a short-cut, an "alias". First, verify your existing aliases:
 
 ```bash
 alias
@@ -289,7 +285,7 @@ Have fun!
 
 ## Add code to the image
 
-If the code that you use is stable, you can add it to the container image.
+If the code that you use in the container is stable, you can add it to the container image.
 
 Create a `code` subdirectory and copy our production-quality `printme.py` script in it.
 
@@ -318,13 +314,13 @@ Open a bash shell in the container and check if the file is present
 
 :::::::::::::::: solution
 
-Start the container in its local bash shell:
+Start a bash shell in the container:
 
 ```bash
 docker run -it --rm python-emoji /bin/bash
 ```
 
-Note that the container prompt indicates the working directory. List the contents:
+Note that the container prompt indicates the working directory `/usr/src/code`. List the contents:
 
 ```bash
 root@03efa1b45f1b:/usr/src/code# ls
@@ -367,6 +363,6 @@ There's no need to pass the local directory into the container as the code is st
 
 - It is easy to build a new container image on top of an existing image.
 - You can install packages that you need if they are not present in an existing image.
-- You add code and eventually compile it in the image so that it is ready to use when the container starts.
+- You can add code and eventually compile it in the image so that it is ready to use when the container starts.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
