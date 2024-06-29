@@ -65,6 +65,7 @@ episodes:
 - 02-installing-docker.md
 - 03-docker-for-cms-opendata.md
 - 04-docker-for-mc-generators-rivet.md
+- 05-building-docker-image.md
 
 # Information for Learners
 learners: 
