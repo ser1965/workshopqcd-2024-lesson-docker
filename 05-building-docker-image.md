@@ -398,13 +398,13 @@ and explore a [hepbase Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/rele
 
 ### Build a new Python image with the ML libraries 
 
-In the Machine Learning hands-on session, the first thing to do was to install some Python libraries. Build a new container image based on the existing image with those libraries included.
+In the Machine Learning hands-on session, the first thing to do was to install some Python packages. Build a new container image based on the existing image with those packages included.
 
 :::::::::::::::: solution
 
-The container image `FROM` which you want to build the new image is `gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5`.
+The container image `FROM` which you want to build the new image is `gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5` that we previously used.
 
-The libraries were installed with
+The packages were installed with
 
 ```bash
 pip install qkeras==0.9.0 tensorflow==2.11.1 hls4ml h5py mplhep cernopendata-client pydot graphviz
@@ -443,7 +443,7 @@ Build the image with
 docker build --tag ml-python:v0.0 .
 ```
 
-Start a new container from this new image and check with `pip list` if the packages are present. Since you do not need to install anything in the container, you can as well remove it after the start (in the similar way as it was done with the MC generator containers):
+Start a new container from this new image and check with `pip list` if the packages are present. Since you do not need to install anything in the container, you can as well remove it after the start with the flag `--rm` (in the similar way as it was done with the MC generator containers):
 
 ```bash
 docker run -P -p 8888:8888 -v $PWD:/code -it --rm ml-python:v0.0
@@ -463,7 +463,7 @@ Learn more about Dockerfile instructions in the [Dockefile reference](https://do
 
 Learn more about writing Dockerfiles in the [HSF Docker tutorial](https://hsf-training.github.io/hsf-training-docker/06-dockerfiles/index.html).
 
-Learn more about usining Docker containers in the analysis work in the [Analysis pipelines training](https://indico.cern.ch/event/1375507/timetable/).
+Learn more about using Docker containers in the analysis work in the [Analysis pipelines training](https://indico.cern.ch/event/1375507/timetable/).
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
