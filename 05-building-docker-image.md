@@ -457,6 +457,37 @@ docker run -P -p 8888:8888 -v $PWD:/code -it --rm ml-python:v0.0
 cmsusr@c3ee9106792c:/code$ pip list
 ```
 
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### What can go wrong?
+
+Can you spot a problem in the way the we built the image?
+What will happen if you use the same Dockerfile in some months from now?
+
+:::::::::::::::: solution
+
+We defined some of the Python packages without a version tag. The current versions will get installed. That's fine if you intend to use them right now just once.
+
+But check the release history of the packages at `https://pypi.org/project/<package>/#history`. You will notice that some of them get often updated.
+
+While the container that you start from **this** image will be the same, it may well be that **next time** you build the image with this Dockerfile, you will not get the same packages.
+
+It is always best to define the package versions. You can find the current versions from the listing of `pip list`. Update `requirements.txt` to
+
+```
+qkeras==0.9.0
+tensorflow==2.11.1
+hls4ml==0.8.1
+h5py==3.11.0
+mplhep==0.3.50
+cernopendata-client==0.3.0
+pydot==2.0.0
+graphviz==0.20.3
+matplotlib==3.9.0
+```
 
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
