@@ -2225,6 +2225,52 @@ done with the MC generator containers):</p>
 </div>
 </div>
 </div>
+<div id="what-can-go-wrong" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="what-can-go-wrong" class="callout-inner">
+<h3 class="callout-title">What can go wrong?<a class="anchor" aria-label="anchor" href="#what-can-go-wrong"></a>
+</h3>
+<div class="callout-content">
+<p>Can you spot a problem in the way the we built the image? What will
+happen if you use the same Dockerfile in some months from now?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
+  <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
+</button>
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div class="accordion-body">
+<p>We defined some of the Python packages without a version tag. The
+current versions will get installed. That’s fine if you intend to use
+them right now just once.</p>
+<p>But check the release history of the packages at
+<code>https://pypi.org/project/&lt;package&gt;/#history</code>. You will
+notice that some of them get often updated.</p>
+<p>While the container that you start from <strong>this</strong> image
+will be the same, it may well be that <strong>next time</strong> you
+build the image with this Dockerfile, you will not get the same
+packages.</p>
+<p>It is always best to define the package versions. You can find the
+current versions from the listing of <code>pip list</code>. Update
+<code>requirements.txt</code> to</p>
+<pre><code>qkeras==0.9.0
+tensorflow==2.11.1
+hls4ml==0.8.1
+h5py==3.11.0
+mplhep==0.3.50
+cernopendata-client==0.3.0
+pydot==2.0.0
+graphviz==0.20.3
+matplotlib==3.9.0</code></pre>
+</div>
+</div>
+</div>
+</div>
 </section><section id="learn-more"><h2 class="section-heading">Learn more<a class="anchor" aria-label="anchor" href="#learn-more"></a>
 </h2>
 <hr class="half-width">
