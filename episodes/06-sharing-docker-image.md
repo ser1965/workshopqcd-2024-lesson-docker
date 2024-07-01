@@ -63,427 +63,108 @@ or, for a quick check
 ```bash
 docker push <yourdockerhubname>/python-emoji:v0.1
 ```
-
+mkdir .github
+kati@LAPTOP-D2GA3D2E:~/cms_open_data_python/qcd_school_ml$ mkdir .github/workflows
 Once done, if your Docker Hub repository is public, anyone see your image in `https://hub.docker.com/u/<yourdockerhubname>` and can pull it from it.
 
 
+## Build and share an image through GitHub
 
+You can also use GitHub actions to build the image and share it through GitHub packages. 
 
-## Building and share an image through GitHub
+Your repository should contain a `Dockerfile` and all the files needed in it.
 
-We will use a small Python image as a base image and add one Python package in it.
-
-Python container images are available from the Docker Hub: https://hub.docker.com/_/python
-
-There's a long list of them, and we choose a tag with
-
-- "slim" to keep it small and fast
-- "bookworm" for a stable [Debian release](https://wiki.debian.org/DebianReleases).
-
-The recipe for the image build is called `Dockerfile`. Create a new working directory, e.g. `docker-image-build` and move to it.
+Create a `.github/workflows/` directory (with that exact name) in your repository:
 
 ```bash
-mkdir docker-image-build
-cd docker-image-build
+mkdir .github
+mkdir .github/workflows
 ```
 
-Choose an example Python package to install, for example [emoji](https://pypi.org/project/emoji/).
-
-Create a new file named `Dockerfile` with the following content
+and save a file `docker-build-deploy.yaml` in it with the following content:
 
 ```
-FROM python:slim-bookworm
-RUN pip install emoji
+name: Create and publish a Docker image
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 ```
 
-Build a new image with 
+Before pushing to the GitHub repository, exclude files you do not want to push in a `.gitignore` file.
+
+Then check the status to make sure that you commit and push what you want
 
 ```bash
-docker build --tag python-emoji .
+git status
 ```
 
-The command `docker build` uses `Dockerfile` (in the directory in which it is run) to build an image with name defined with `--tag`. Note the dot (.) at the end of the line.
-
-```output
-[+] Building 37.2s (7/7) FINISHED                                                                        docker:default
- => [internal] load build definition from Dockerfile                                                               0.1s
- => => transferring dockerfile: 85B                                                                                0.0s
- => [internal] load .dockerignore                                                                                  0.1s
- => => transferring context: 2B                                                                                    0.0s
- => [internal] load metadata for docker.io/library/python:slim-bookworm                                            5.3s
- => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
- => [1/2] FROM docker.io/library/python:slim-bookworm@sha256:da2d7af143dab7cd5b0d5a5c9545fe14e67fc24c394fcf1cf15  23.1s
- => => resolve docker.io/library/python:slim-bookworm@sha256:da2d7af143dab7cd5b0d5a5c9545fe14e67fc24c394fcf1cf15e  0.0s
- => => sha256:da2d7af143dab7cd5b0d5a5c9545fe14e67fc24c394fcf1cf15e8ea16cbd8637 9.12kB / 9.12kB                     0.0s
- => => sha256:daab4fae04964d439c4eed1596713887bd38b89ffc6bdd858cc31433c4dd1236 1.94kB / 1.94kB                     0.0s
- => => sha256:d9711c6b91eb742061f4d217028c20285e060c3676269592f199b7d22004725b 6.67kB / 6.67kB                     0.0s
- => => sha256:2cc3ae149d28a36d28d4eefbae70aaa14a0c9eab588c3790f7979f310b893c44 29.15MB / 29.15MB                  15.7s
- => => sha256:07ccb93ecbac82807474a781c9f71fbdf579c08f3aca6e78284fb34b7740126d 3.32MB / 3.32MB                     3.4s
- => => sha256:aaa0341b7fe3108f9c2dd21daf26baff648cf3cef04c6b9ee7df7322f81e4e3a 12.01MB / 12.01MB                  10.0s
- => => sha256:c9d4ed0ae1ba79e0634af2cc17374f6acdd5c64d6a39beb26d4e6d1168097209 231B / 231B                         4.4s
- => => sha256:b562c417939b83cdaa7dee634195f4bdb8d25e7b53a17a5b8040b70b789eb961 2.83MB / 2.83MB                     8.6s
- => => extracting sha256:2cc3ae149d28a36d28d4eefbae70aaa14a0c9eab588c3790f7979f310b893c44                          4.3s
- => => extracting sha256:07ccb93ecbac82807474a781c9f71fbdf579c08f3aca6e78284fb34b7740126d                          0.3s
- => => extracting sha256:aaa0341b7fe3108f9c2dd21daf26baff648cf3cef04c6b9ee7df7322f81e4e3a                          1.3s
- => => extracting sha256:c9d4ed0ae1ba79e0634af2cc17374f6acdd5c64d6a39beb26d4e6d1168097209                          0.0s
- => => extracting sha256:b562c417939b83cdaa7dee634195f4bdb8d25e7b53a17a5b8040b70b789eb961                          0.8s
- => [2/2] RUN pip install emoji                                                                                    8.3s
- => exporting to image                                                                                             0.2s
- => => exporting layers                                                                                            0.1s
- => => writing image sha256:f784d45ea915a50d47b90a3e2cdd3a641c1fd75bc57725f2fb5325c82cf66d1b                       0.0s
- => => naming to docker.io/library/python-emoji                                                                    0.0s
-
-What's Next?
-  View a summary of image vulnerabilities and recommendations → docker scout quickview
-```
-
-You can check with ` docker images` that the image has appeared in the list of images.
-
-## Using the image locally
-
-
-Start the container with
+The add and commit
 
 ```bash
-docker run -it --rm python-emoji
+git add .
+git commit -m "Adding a worflow to build the container"
 ```
 
-The flag `--rm` makes docker delete the local container when you exit.
-
-It will give you a Python prompt. 
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-### Test that the Python package is in the container
-
-Read from the [emoji package documentation](https://pypi.org/project/emoji/) how to use it and test that it works as expected.
-
-:::::::::::::::: solution
-
-
-```output
-Python 3.12.4 (main, Jun 27 2024, 00:07:37) [GCC 12.2.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> from emoji import emojize as em
->>> print(em(":snowflake:"))
-❄️
-```
-
-Exit with `exit()` or Ctrl-d.
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-### Inspect the container from the bash shell 
-
-Start the container bash shell and check what Python packages are installed.
-
-Hint: use `/bin/bash` in the `docker run...` command.
-
-:::::::::::::::: solution
-
-Start the container in its local bash shell:
+Check the remote to see that the push will go where you want
 
 ```bash
-docker run -it --rm python-emoji /bin/bash
+git remote -v
 ```
 
-Use `pip list` to see the Python packages:
+and push the changes
 
 ```bash
-root@aef232a1babe:/# pip list
+git push origin main
 ```
 
-```output
-root@aef232a1babe:/# pip list
-Package           Version
------------------ -------
-emoji             2.12.1
-pip               24.0
-setuptools        70.1.1
-typing_extensions 4.12.2
-wheel             0.43.0
+Once done, click on "Actions" in the GitHub Web UI and you will see the build ongoing:
 
-[notice] A new release of pip is available: 24.0 -> 24.1.1
-[notice] To update, run: pip install --upgrade pip
+![](fig/Screenshot_github_workflow_action.png)
 
-```
+If all goes well, after some minutes, you will see a green tick mark and the container image will be available in Packages
 
-It is often helpful to use bash shell to inspect the contents of a container.
+`https://github.com/<yourgithubname>/<repository>/pkgs/container/<repository>`
 
-Exit from the container with `exit`.
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-### Run a single Python script in the container
-
-Sometimes, it is convenient to pass a single Python script to the container.
-Write an example Python script to be passed into the container.
-
-:::::::::::::::: solution
-
-Make a new subdirectory (you can name it `test`) and save the Python code in a file (name it `myscript.py`):
-
-```
-from emoji import emojize as em
-print(em(":ghost:"))
-```
-
-Now, you must pass this script into the container using the `-v` flag in the `docker run ...` command. We know to use the container directory `/usr/src` from the Python container image [usage instructions](https://hub.docker.com/_/python) and we choose to name the container directory `mycode`.
-
-You can use the `-w` to open the container in that directory.
-
-```bash
-docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python myscript.py
-```
-
-👻
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-### Make the Python script configurable
-
-Make the Python script configurable so that you can use any of the [available emojis](https://carpedm20.github.io/emoji/). I'm sure you have tried a few already 😉
-
-:::::::::::::::: solution
-
-Save the following a file (e.g. `printme.py`) in the `test` directory:
-
-```
-from emoji import emojize as em
-import sys
-
-if __name__ == "__main__":
-  anemoji = sys.argv[1]
-  print(em(":"+anemoji+":"))
-```
-
-Run this with
-
-```bash
-docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python printme.py sparkles
-```
-
-✨
-
-:::::::::::::::: spoiler
-
-### For fun 🎁
-
-As the docker command has become long, you could define a short-cut, an "alias". First, verify your existing aliases:
-
-```bash
-alias
-```
-
-If `printme` is not in use already, define it as alias to the long command above:
-
-```bash
-alias printme="docker run -it --rm  -v "$PWD"/test:/usr/src/mycode -w /usr/src/mycode python-emoji python printme.py"
-```
-
-Now try:
-
-```bash
-printme party_popper
-```
-
-🎉
-
-Have fun!
-
-
-::::::::::::::::::::::::
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-## Add code to the image
-
-If the code that you use in the container is stable, you can add it to the container image.
-
-Create a `code` subdirectory and copy our production-quality `printme.py` script in it.
-
-Modify the `Dockerfile` to use `/usr/src/code` as the working directory and copy the local `code` subdirectory into the container (the dot brings it to the working directory defined in the previous line):
-
-```
-FROM python:slim-bookworm
-RUN pip install emoji
-
-WORKDIR /usr/src/code
-
-COPY code .
-```
-
-Build the image with this new definition. It is a good practice to use version tags:
-
-```bash
-docker build --tag python-emoji:v0.1 .
-```
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-### Inspect the new container 
-
-Open a bash shell in the container and check if the file is present
-
-:::::::::::::::: solution
-
-Start a bash shell in the container:
-
-```bash
-docker run -it --rm python-emoji /bin/bash
-```
-
-Note that the container prompt indicates the working directory `/usr/src/code`. List the contents:
-
-```bash
-root@03efa1b45f1b:/usr/src/code# ls
-```
-
-```output
-printme.py
-```
-
-Exit from the container with `exit`.
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-### Run the script 
-
-Run the script that is now in the container.
-
-:::::::::::::::: solution
-
-Start the container 
-
-```bash
- docker run -it --rm python-emoji python printme.py magic_wand
-```
-
-There's no need to pass the local directory into the container as the code is stored in the container image.
-
-🪄
-
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-## More complex Dockerfiles
-
-Check if you can make sense of more complex Dockerfiles bases on what you learnt from our simple case.
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-### Explore Dockerfiles 
-
-Explore the various [hepforge](https://rivet.hepforge.org/) Dockerfiles. You can find them under the MC generator specific directories in the [Rivet source code repository](https://gitlab.com/hepcedar/rivet/-/tree/release-4-0-x/docker?ref_type=heads).
-
-:::::::::::::::: solution
-
-You can start from the [rivet-pythia image Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/release-4-0-x/docker/rivet-pythia/Dockerfile?ref_type=heads).
-
-Find the familiar instructions `FROM`, `RUN`, `COPY`and `WORKDIR`.
-
-Observe how the image is built `FROM` an existing image
-
-```
-FROM hepstore/rivet:${RIVET_VERSION}
-```
-
-Find the Dockerfile for that base image: [rivet Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/release-4-0-x/docker/rivet/Dockerfile?ref_type=heads).
-
-See how it is built `FROM` another base image 
-
-```
-FROM hepstore/hepbase-${ARCH}-latex
-```
-
-and explore a [hepbase Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/release-4-0-x/docker/hepbase/Dockerfile.ubuntu?ref_type=heads).
-
-
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
-
-## Build a Machine Learning Python image
-
-In the Machine Learning hands-on session, the first thing to do was to install some additional packages in the Python container. Can you build a container image with these packages included?
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-### Build a new Python image with the ML packages 
-
-Build a new Machine Learning Python image based on the existing image with the ML packages included.
-
-:::::::::::::::: solution
-
-The container image `FROM` which you want to build the new image is `gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5` that we previously used.
-
-The packages were installed with
-
-```bash
-pip install qkeras==0.9.0 tensorflow==2.11.1 hls4ml h5py mplhep cernopendata-client pydot graphviz
-pip install --upgrade matplotlib
-```
-
-When you run the upgrade for `matplotlib`, you might have noticed the last line of the output `Successfully installed contourpy-1.2.1 matplotlib-3.9.0`. So we pick up that version for `matplotlib`.
-
-Write these packages in a new file called `requirements.txt`:
-
-```
-qkeras==0.9.0
-tensorflow==2.11.1
-hls4ml
-h5py
-mplhep
-cernopendata-client 
-pydot
-graphviz
-matplotlib==3.9.0
-```
-
-In the Dockerfile, instruct Docker to start `FROM` the base image, `COPY` the requirements file in the image and `RUN` the `pip install ...` command:
-
-```
-FROM gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5
-
-COPY requirements.txt .
-
-RUN pip install --no-cache-dir -r requirements.txt
-```
-
-Build the image with
-
-```bash
-docker build --tag ml-python:v0.0 .
-```
-
-Start a new container from this new image and check with `pip list` if the packages are present. Since you do not need to install anything in the container, you can as well remove it after the start with the flag `--rm` (in the similar way as it was done with the MC generator containers):
-
-```bash
-docker run -P -p 8888:8888 -v $PWD:/code -it --rm ml-python:v0.0
-```
-
-```bash
-cmsusr@c3ee9106792c:/code$ pip list
-```
-
-
-:::::::::::::::::::::::::
-:::::::::::::::::::::::::::::::::::::::::::::::
+The image name is the same as the repository name because we have chosen so on line 10 of the `docker-build-deploy.yaml` file.
 
 ## Learn more
 
