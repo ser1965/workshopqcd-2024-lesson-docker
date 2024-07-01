@@ -396,9 +396,11 @@ and explore a [hepbase Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/rele
 
 ## Learn more
 
-Learn more about Dockerfile instruction in the [Dockefile reference](https://docs.docker.com/reference/dockerfile/).
+Learn more about Dockerfile instructions in the [Dockefile reference](https://docs.docker.com/reference/dockerfile/).
 
-Learn more about writing Dockerfile in the [HSF Docker tutorial](https://hsf-training.github.io/hsf-training-docker/06-dockerfiles/index.html).
+Learn more about writing Dockerfiles in the [HSF Docker tutorial](https://hsf-training.github.io/hsf-training-docker/06-dockerfiles/index.html).
+
+Learn more about usining Docker containers in the analysis work in the [Analysis pipelines training](https://indico.cern.ch/event/1375507/timetable/).
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
