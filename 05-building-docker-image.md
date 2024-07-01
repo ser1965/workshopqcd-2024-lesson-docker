@@ -1,5 +1,5 @@
 ---
-title: "WIP: Building your own docker image"
+title: "Building your own docker image"
 teaching: 10
 exercises: 10
 ---
@@ -357,6 +357,48 @@ There's no need to pass the local directory into the container as the code is st
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
+## More complex Dockerfiles
+
+Check if you can make sense of more complex Dockerfiles bases on what you learnt from our simple case.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Run the script 
+
+Explore the various [hepforge](https://rivet.hepforge.org/) Dockerfiles. You can find them under the MC generator specific directories in the [Rivet source code repository](https://gitlab.com/hepcedar/rivet/-/tree/release-4-0-x/docker?ref_type=heads).
+
+:::::::::::::::: solution
+
+You can start from the [rivet-pythia image Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/release-4-0-x/docker/rivet-pythia/Dockerfile?ref_type=heads).
+
+Find the familiar instructions `FROM`, `RUN`, `COPY`and `WORKDIR`.
+
+Observe how the image is built `FROM` an existing image
+
+```
+FROM hepstore/rivet:${RIVET_VERSION}
+```
+
+Find the Dockerfile for that base image: [rivet Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/release-4-0-x/docker/rivet/Dockerfile?ref_type=heads).
+
+See how it is built `FROM` another base image 
+
+```
+FROM hepstore/hepbase-${ARCH}-latex
+```
+
+and explore a [hepbase Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/release-4-0-x/docker/hepbase/Dockerfile.ubuntu?ref_type=heads).
+
+
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+## Learn more
+
+Learn more about Dockerfile instruction in the [Dockefile reference](https://docs.docker.com/reference/dockerfile/).
+
+Learn more about writing Dockerfile in the [HSF Docker tutorial](https://hsf-training.github.io/hsf-training-docker/06-dockerfiles/index.html).
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
