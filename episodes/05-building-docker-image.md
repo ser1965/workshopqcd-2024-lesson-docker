@@ -394,11 +394,15 @@ and explore a [hepbase Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/rele
 :::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::
 
+## Build a Machine Learning Python image
+
+In the Machine Learning hands-on session, the first thing to do was to install some additional packages in the Python container. Can you build a container image with these packages included?
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Build a new Python image with the ML libraries 
+### Build a new Python image with the ML packages 
 
-In the Machine Learning hands-on session, the first thing to do was to install some Python packages. Build a new container image based on the existing image with those packages included.
+Build a new Machine Learning Python image based on the existing image with the ML packages included.
 
 :::::::::::::::: solution
 
