@@ -66,6 +66,7 @@ episodes:
 - 03-docker-for-cms-opendata.md
 - 04-docker-for-mc-generators-rivet.md
 - 05-building-docker-image.md
+- 06-sharing-docker-image.md
 
 # Information for Learners
 learners: 

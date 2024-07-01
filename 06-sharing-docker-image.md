@@ -1,51 +1,75 @@
 ---
-title: "Building your own docker image"
+title: "Sharing your docker image"
 teaching: 10
 exercises: 20
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What if the container image does not have what you need installed?
+- How to share a container image in Docker Hub?
+- How to build and share a container image through GitHub
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Learn how to build a container image from an existing image
-- Use the container image locally
+- Learn how to push a container image to Docker Hub
+- Learn how to trigger the container image build through GitHub actions and share it through a GitHub Package.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Overview
 
-You might be using a container image, but it does not have everything you need installed. Therefore, every time you create a container from that image, you will need to install something in it. To save time, you can build an image of your own with everything you need.
+In the previous episode you learnt how to build a container image.
 
-Building an image from an existing image is easy and can be done with `docker` commands.
+In this episode, we will go through two alternatives for sharing the image.
 
-We will now exercise how to do it, first with a simple example and then with a container image that we have been using in the exercises.
+## Share an image through Docker Hub
 
-But first, let us see where we get the images that we have been using so far.
+Create an account in the Docker image registry: go to [Docker Hub](https://hub.docker.com/) and click on "Sign up". This is a separate account from GitHub or anything else.
 
-## Container image registries
+On the terminal, log in to Docker Hub:
 
-Container images are available from [container registries](https://docs.docker.com/guides/docker-concepts/the-basics/what-is-a-registry/). In the previous episodes, we have used the following images:
+```bash
+docker login --username=<yourdockerhubname>
+```
 
-- `hello-world`
-- `gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5`
-- `gitlab-registry.cern.ch/cms-cloud/root-vnc:latest`
-- `hepstore/rivet-pythia`
-- `hepstore/rivet-sherpa:3.1.7-2.2.12`
+Tag the image with your username:
 
-The syntax for the image name is: `[registry_name]/[repository]/image_name:[version]`
+```bash
+docker tag ml-python:v0.0 <yourdockerhubname>/ml-python:v0.0
+```
 
-The **registry name** is like a domain name. If no registry name is given, the default location is the docker image registry: [Docker Hub](https://hub.docker.com/), this is the case for `hello-world` and the MC generator images. CMS open data images come from the container image registry of a CERN GitLab project.
+::::::::::::::::::::::::::::::::: warning
 
-The **repository** is a collection of container images within the container registry. For the MC generator images, it is `hepstore` in Docker Hub, for the CMS open data images, it is `cms-cloud` in the CERN GitLab.
+Note that the ML image is big, the ML packages made it double the size of the base image!
 
-A **version** tag comes after `:`. If no value is given, the latest version is taken. Also, `:latest` takes the most recent tag. Note that versions may change, and it is good practice to specify the version.
+If you want a quick exercise, use your emoji image instead:
 
-## Building an image
+```bash
+docker tag python-emoji:v0.1 <yourdockerhubname>/python-emoji:v0.1
+```
+
+:::::::::::::::::::::::::::::::::::::::::
+
+Push the image to Docker Hub:
+
+```bash
+docker push <yourdockerhubname>/ml-python:v0.0
+```
+
+or, for a quick check 
+
+```bash
+docker push <yourdockerhubname>/python-emoji:v0.1
+```
+
+Once done, if your Docker Hub repository is public, anyone see your image in `https://hub.docker.com/u/<yourdockerhubname>` and can pull it from it.
+
+
+
+
+## Building and share an image through GitHub
 
 We will use a small Python image as a base image and add one Python package in it.
 
