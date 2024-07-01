@@ -363,7 +363,7 @@ Check if you can make sense of more complex Dockerfiles bases on what you learnt
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-### Run the script 
+### Explore Dockerfiles 
 
 Explore the various [hepforge](https://rivet.hepforge.org/) Dockerfiles. You can find them under the MC generator specific directories in the [Rivet source code repository](https://gitlab.com/hepcedar/rivet/-/tree/release-4-0-x/docker?ref_type=heads).
 
@@ -389,6 +389,69 @@ FROM hepstore/hepbase-${ARCH}-latex
 
 and explore a [hepbase Dockerfile](https://gitlab.com/hepcedar/rivet/-/blob/release-4-0-x/docker/hepbase/Dockerfile.ubuntu?ref_type=heads).
 
+
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Build a new Python image with the ML libraries 
+
+In the Machine Learning hands-on session, the first thing to do was to install some Python libraries. Build a new container image based on the existing image with those libraries included.
+
+:::::::::::::::: solution
+
+The container image `FROM` which you want to build the new image is `gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5`.
+
+The libraries were installed with
+
+```bash
+pip install qkeras==0.9.0 tensorflow==2.11.1 hls4ml h5py mplhep cernopendata-client pydot graphviz
+pip install --upgrade matplotlib
+```
+
+When you run the upgrade for `matplotlib`, you might have noticed the last line of the output `Successfully installed contourpy-1.2.1 matplotlib-3.9.0`. So we pick up that version for `matplotlib`.
+
+Write these packages in a new file called `requirements.txt`:
+
+```
+qkeras==0.9.0
+tensorflow==2.11.1
+hls4ml
+h5py
+mplhep
+cernopendata-client 
+pydot
+graphviz
+matplotlib==3.9.0
+```
+
+In the Dockerfile, instruct Docker to start `FROM` the base image, `COPY` the requirements file in the image and `RUN` the `pip install ...` command:
+
+```
+FROM gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+```
+
+Build the image with
+
+```bash
+docker build --tag ml-python:v0.0 .
+```
+
+Start a new container from this new image and check with `pip list` if the packages are present. Since you do not need to install anything in the container, you can as well remove it after the start (in the similar way as it was done with the MC generator containers):
+
+```bash
+docker run -P -p 8888:8888 -v $PWD:/code -it --rm ml-python:v0.0
+```
+
+```bash
+cmsusr@c3ee9106792c:/code$ pip list
+```
 
 
 :::::::::::::::::::::::::
