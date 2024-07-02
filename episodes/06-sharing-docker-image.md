@@ -63,8 +63,7 @@ or, for a quick check
 ```bash
 docker push <yourdockerhubname>/python-emoji:v0.1
 ```
-mkdir .github
-kati@LAPTOP-D2GA3D2E:~/cms_open_data_python/qcd_school_ml$ mkdir .github/workflows
+
 Once done, if your Docker Hub repository is public, anyone see your image in `https://hub.docker.com/u/<yourdockerhubname>` and can pull it from it.
 
 
