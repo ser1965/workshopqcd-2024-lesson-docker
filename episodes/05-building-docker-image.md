@@ -317,7 +317,7 @@ Open a bash shell in the container and check if the file is present
 Start a bash shell in the container:
 
 ```bash
-docker run -it --rm python-emoji /bin/bash
+docker run -it --rm python-emoji:v0.1 /bin/bash
 ```
 
 Note that the container prompt indicates the working directory `/usr/src/code`. List the contents:
@@ -346,7 +346,7 @@ Run the script that is now in the container.
 Start the container 
 
 ```bash
- docker run -it --rm python-emoji python printme.py magic_wand
+ docker run -it --rm python-emoji:v0.1 python printme.py magic_wand
 ```
 
 There's no need to pass the local directory into the container as the code is stored in the container image.
