@@ -402,20 +402,26 @@ In the Machine Learning hands-on session, the first thing to do was to install s
 
 ### Build a new Python image with the ML packages 
 
-Build a new Machine Learning Python image based on the existing image with the ML packages included.
+Build a new Machine Learning Python image with the ML Python packages included. Use as the base image the new tag [python3.10.12](https://gitlab.cern.ch/cms-cloud/python-vnc/container_registry/14160) that includes a package needed for the ML exercises to work.
 
 :::::::::::::::: solution
 
-The container image `FROM` which you want to build the new image is `gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5` that we previously used.
+The container image `FROM` which you want to build the new image is `gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.12` which has an update kindly provided for the ML exercise to work.
 
-The packages were installed with
+The Python packages were installed with
 
 ```bash
-pip install qkeras==0.9.0 tensorflow==2.11.1 hls4ml h5py mplhep cernopendata-client pydot graphviz
+pip install qkeras==0.9.0 tensorflow==2.11.1 hls4ml h5py mplhep cernopendata-client pydot graphviz fsspec-xrootd
 pip install --upgrade matplotlib
 ```
 
-When you run the upgrade for `matplotlib`, you might have noticed the last line of the output `Successfully installed contourpy-1.2.1 matplotlib-3.9.0`. So we pick up that version for `matplotlib`.
+:::::::::::::::::: callout
+
+Note that in the new image, you need to add `fsspec-xrootd` to the Python packages to install.
+
+::::::::::::::::::::::::::
+
+When you run the upgrade for `matplotlib`, you might have noticed the last line of the output `Successfully installed matplotlib-3.9.1`. So we pick up that version for `matplotlib`.
 
 Write these packages in a new file called `requirements.txt`:
 
@@ -428,13 +434,14 @@ mplhep
 cernopendata-client 
 pydot
 graphviz
-matplotlib==3.9.0
+matplotlib==3.9.1
+fsspec-xrootd==0.3.0
 ```
 
 In the Dockerfile, instruct Docker to start `FROM` the base image, `COPY` the requirements file in the image and `RUN` the `pip install ...` command:
 
 ```
-FROM gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5
+FROM gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.12
 
 COPY requirements.txt .
 
@@ -444,13 +451,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 Build the image with
 
 ```bash
-docker build --tag ml-python:v0.0 .
+docker build --tag ml-python:v0.1 .
 ```
 
 Start a new container from this new image and check with `pip list` if the packages are present. Since you do not need to install anything in the container, you can as well remove it after the start with the flag `--rm` (in the similar way as it was done with the MC generator containers):
 
 ```bash
-docker run -P -p 8888:8888 -v $PWD:/code -it --rm ml-python:v0.0
+docker run -P -p 8888:8888 -v $PWD:/code -it --rm ml-python:v0.1
 ```
 
 ```bash
@@ -486,7 +493,8 @@ mplhep==0.3.50
 cernopendata-client==0.3.0
 pydot==2.0.0
 graphviz==0.20.3
-matplotlib==3.9.0
+matplotlib==3.9.1
+fsspec-xrootd==0.3.0
 ```
 
 :::::::::::::::::::::::::
