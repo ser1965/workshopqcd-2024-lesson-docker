@@ -323,7 +323,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Building your own docker image</h1>
-        <p>Last updated on 2024-07-01 |
+        <p>Last updated on 2024-07-04 |
         
         <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/edit/main/episodes/05-building-docker-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -837,8 +837,9 @@ build a container image with these packages included?</p>
 <h3 class="callout-title">Build a new Python image with the ML packages<a class="anchor" aria-label="anchor" href="#build-a-new-python-image-with-the-ml-packages"></a>
 </h3>
 <div class="callout-content">
-<p>Build a new Machine Learning Python image based on the existing image
-with the ML packages included.</p>
+<p>Build a new Machine Learning Python image with the ML Python packages
+included. Use as the base image the new tag <a href="https://gitlab.cern.ch/cms-cloud/python-vnc/container_registry/14160" class="external-link">python3.10.12</a>
+that includes a package needed for the ML exercises to work.</p>
 </div>
 </div>
 </div>
@@ -851,19 +852,32 @@ with the ML packages included.</p>
 <div class="accordion-body">
 <p>The container image <code>FROM</code> which you want to build the new
 image is
-<code>gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5</code>
-that we previously used.</p>
-<p>The packages were installed with</p>
+<code>gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.12</code>
+which has an update kindly provided for the ML exercise to work.</p>
+<p>The Python packages were installed with</p>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">pip</span> install qkeras==0.9.0 tensorflow==2.11.1 hls4ml h5py mplhep cernopendata-client pydot graphviz</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">pip</span> install qkeras==0.9.0 tensorflow==2.11.1 hls4ml h5py mplhep cernopendata-client pydot graphviz fsspec-xrootd</span>
 <span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> matplotlib</span></code></pre>
+</div>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>Note that in the new image, you need to add
+<code>fsspec-xrootd</code> to the Python packages to install.</p>
+</div>
+</div>
 </div>
 <p>When you run the upgrade for <code>matplotlib</code>, you might have
 noticed the last line of the output
-<code>Successfully installed contourpy-1.2.1 matplotlib-3.9.0</code>. So
-we pick up that version for <code>matplotlib</code>.</p>
+<code>Successfully installed matplotlib-3.9.1</code>. So we pick up that
+version for <code>matplotlib</code>.</p>
 <p>Write these packages in a new file called
 <code>requirements.txt</code>:</p>
 <pre><code>qkeras==0.9.0
@@ -874,11 +888,12 @@ mplhep
 cernopendata-client 
 pydot
 graphviz
-matplotlib==3.9.0</code></pre>
+matplotlib==3.9.1
+fsspec-xrootd==0.3.0</code></pre>
 <p>In the Dockerfile, instruct Docker to start <code>FROM</code> the
 base image, <code>COPY</code> the requirements file in the image and
 <code>RUN</code> the <code>pip install ...</code> command:</p>
-<pre><code>FROM gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.5
+<pre><code>FROM gitlab-registry.cern.ch/cms-cloud/python-vnc:python3.10.12
 
 COPY requirements.txt .
 
@@ -887,7 +902,7 @@ RUN pip install --no-cache-dir -r requirements.txt</code></pre>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">--tag</span> ml-python:v0.0 .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">--tag</span> ml-python:v0.1 .</span></code></pre>
 </div>
 <p>Start a new container from this new image and check with
 <code>pip list</code> if the packages are present. Since you do not need
@@ -897,7 +912,7 @@ done with the MC generator containers):</p>
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-P</span> <span class="at">-p</span> 8888:8888 <span class="at">-v</span> <span class="va">$PWD</span>:/code <span class="at">-it</span> <span class="at">--rm</span> ml-python:v0.0</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-P</span> <span class="at">-p</span> 8888:8888 <span class="at">-v</span> <span class="va">$PWD</span>:/code <span class="at">-it</span> <span class="at">--rm</span> ml-python:v0.1</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -949,7 +964,8 @@ mplhep==0.3.50
 cernopendata-client==0.3.0
 pydot==2.0.0
 graphviz==0.20.3
-matplotlib==3.9.0</code></pre>
+matplotlib==3.9.1
+fsspec-xrootd==0.3.0</code></pre>
 </div>
 </div>
 </div>
@@ -1041,9 +1057,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/instructor/05-building-docker-image.html",
   "identifier": "https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/instructor/05-building-docker-image.html",
-  "dateCreated": "2024-07-02",
-  "dateModified": "2024-07-01",
-  "datePublished": "2024-07-02"
+  "dateCreated": "2024-07-04",
+  "dateModified": "2024-07-04",
+  "datePublished": "2024-07-04"
 }
 
   </script><script>
