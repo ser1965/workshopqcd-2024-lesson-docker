@@ -37,7 +37,7 @@ docker login --username=<yourdockerhubname>
 Tag the image with your username:
 
 ```bash
-docker tag ml-python:v0.0 <yourdockerhubname>/ml-python:v0.0
+docker tag ml-python:v0.0 <yourdockerhubname>/ml-python:v0.1
 ```
 
 ::::::::::::::::::::::::::::::::: warning
@@ -55,7 +55,7 @@ docker tag python-emoji:v0.1 <yourdockerhubname>/python-emoji:v0.1
 Push the image to Docker Hub:
 
 ```bash
-docker push <yourdockerhubname>/ml-python:v0.0
+docker push <yourdockerhubname>/ml-python:v0.1
 ```
 
 or, for a quick check 
