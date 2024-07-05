@@ -67,6 +67,30 @@ docker push <yourdockerhubname>/python-emoji:v0.1
 Once done, if your Docker Hub repository is public, anyone see your image in `https://hub.docker.com/u/<yourdockerhubname>` and can pull it from it.
 
 
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Document your image
+
+Add a description and an overview.
+
+:::::::::::::::: solution
+
+Find your image in `https://hub.docker.com/u/<yourdockerhubname>`.
+Add a brief descripion. In "Overview", write usage instructions.
+
+:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+### Exchange images
+
+Try someone else's image.
+
+Are the instructions clear?
+
+:::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Build and share an image through GitHub
 
 You can also use GitHub actions to build the image and share it through GitHub packages. 
