@@ -37,7 +37,7 @@ docker login --username=<yourdockerhubname>
 Tag the image with your username:
 
 ```bash
-docker tag ml-python:v0.0 <yourdockerhubname>/ml-python:v0.1
+docker tag ml-python:v0.1 <yourdockerhubname>/ml-python:v0.1
 ```
 
 ::::::::::::::::::::::::::::::::: warning
