@@ -46,7 +46,7 @@
             </li>
           </ul></li>
       </div>
-      
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Instructor View <i data-feather="chevron-down"></i>
@@ -170,7 +170,7 @@
                 </div><!--/div.accordion-flush-->
               </div><!--div.sidenav-view-selector -->
             </div><!--/div.col -->
-      
+
             <hr></div><!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordionFlush11">
@@ -189,7 +189,7 @@
     <div class="accordion-header" id="flush-heading1">
         <a href="index.html">Summary and Schedule</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -198,7 +198,7 @@
     <div class="accordion-header" id="flush-heading2">
         <a href="01-introduction.html">1. Introduction</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -207,7 +207,7 @@
     <div class="accordion-header" id="flush-heading3">
         <a href="02-installing-docker.html">2. Installing docker</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -221,7 +221,7 @@
         </span>
       </button>
     </div><!--/div.accordion-header-->
-        
+
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#overview">Overview</a></li>
@@ -229,7 +229,7 @@
 <li><a href="#exercises">Exercises</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -238,7 +238,7 @@
     <div class="accordion-header" id="flush-heading5">
         <a href="04-docker-for-mc-generators-rivet.html">4. Docker containers for Monte Carlo generators and Rivet</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -247,7 +247,7 @@
     <div class="accordion-header" id="flush-heading6">
         <a href="05-building-docker-image.html">5. Building your own docker image</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -256,7 +256,7 @@
     <div class="accordion-header" id="flush-heading7">
         <a href="06-sharing-docker-image.html">6. Sharing your docker image</a>
     </div><!--/div.accordion-header-->
-        
+
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
@@ -288,10 +288,10 @@
               </div>
             </div>
             <hr class="half-width resources"><a href="../instructor/aio.html">See all in one page</a>
-            
+
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
-            
+
             </div>
           </div><!-- /div.accordion -->
         </div><!-- /div.sidebar-inner -->
@@ -312,20 +312,20 @@
           Previous: Installing docker
         </a>
         <a class="chapter-link float-end" href="../instructor/04-docker-for-mc-generators-rivet.html" rel="next">
-          Next: Docker containers... 
+          Next: Docker containers...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Docker containers for CMS open data</h1>
         <p>Last updated on 2024-06-26 |
-        
+
         <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/edit/main/episodes/03-docker-for-cms-opendata.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-        
-        
-        
+
+
+
         <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 35 minutes</p>
-        
+
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -358,8 +358,8 @@ container image.</li>
 </div>
 </div>
 </div>
-<section id="overview"><h2 class="section-heading">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h2>
+<section><h2 class="section-heading" id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+<a class="anchor" aria-label="anchor" href="#overview"></a></h2>
 <hr class="half-width"><p>This exercise will walk you through setting up and familiarizing
 yourself with Docker, so that you can effectively use it to interface
 with the CMS open data. It is <em>not</em> meant to completely cover
@@ -394,8 +394,8 @@ introduction to Docker</a>. The use of graphical interfaces, such the
 graphics window from ROOT, depends on the operating system of your
 computer. Therefore, in the following, separate instructions are given
 for Windows WSL, Linux and MacOS.</p>
-</section><section id="start-the-container"><h2 class="section-heading">Start the container<a class="anchor" aria-label="anchor" href="#start-the-container"></a>
-</h2>
+</section><section><h2 class="section-heading" id="start-the-container">Start the container<a class="anchor" aria-label="anchor" href="#start-the-container"></a>
+<a class="anchor" aria-label="anchor" href="#start-the-container"></a></h2>
 <hr class="half-width"><p>The first time you start a container, a docker image file gets
 downloaded from an image registry. The open data images are large (2-3GB
 for the root and python tools images and substantially larger for the
@@ -594,8 +594,8 @@ started VNC, stop it first:</p>
 </div>
 </div>
 </div>
-</section><section id="exercises"><h2 class="section-heading">Exercises<a class="anchor" aria-label="anchor" href="#exercises"></a>
-</h2>
+</section><section><h2 class="section-heading" id="exercises">Exercises<a class="anchor" aria-label="anchor" href="#exercises"></a>
+<a class="anchor" aria-label="anchor" href="#exercises"></a></h2>
 <hr class="half-width"><div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -803,9 +803,9 @@ your browser using software installed in the container.</li>
 </ul></div>
 </div>
 </div>
-<!-- 
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use. 
+any links that you are not going to use.
  -->
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
@@ -819,7 +819,7 @@ any links that you are not going to use.
           Previous: Installing docker
         </a>
         <a class="chapter-link float-end" href="../instructor/04-docker-for-mc-generators-rivet.html" rel="next">
-          Next: Docker containers... 
+          Next: Docker containers...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -830,18 +830,18 @@ any links that you are not going to use.
       		<footer class="row footer mx-md-3"><hr><div class="col-md-6">
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
-        
+
         <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/edit/main/episodes/03-docker-for-cms-opendata.md" class="external-link">Edit on GitHub</a>
-        
+
 	
         | <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/" class="external-link">Source</a></p>
 				<p><a href="https://github.com/cms-opendata-workshop/workshopqcd-2024-lesson-docker/blob/main/CITATION.cff" class="external-link">Cite</a> | <a href="mailto:cms-dpoa-coordinators@cern.ch">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
-        
+
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
-        
+
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
@@ -866,7 +866,7 @@ any links that you are not going to use.
   "identifier": "https://cms-opendata-workshop.github.io/workshopqcd-2024-lesson-docker/instructor/03-docker-for-cms-opendata.html",
   "dateCreated": "2024-07-05",
   "dateModified": "2024-06-26",
-  "datePublished": "2024-07-05"
+  "datePublished": "2024-07-09"
 }
 
   </script><script>
